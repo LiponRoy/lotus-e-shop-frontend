@@ -1,10 +1,29 @@
 import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Products from './pages/Products';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
+import NotFound from './pages/NotFound';
+import Home from './pages/Home';
+import NavbarTwo from './components/Navbar/NavbarTwo';
+import About from './pages/About';
 
 function App() {
 	return (
 		<div className='App'>
-			<h1 className='text-4xl text-white font-bold bg-red-500 p-4'>Lotus E shop project (Lipon Roy)</h1>
+			<Router>
+				<NavbarTwo></NavbarTwo>
+				<Routes>
+					<Route path='/' element={<Home />} />
+					<Route path='/products' element={<Products />} />
+					<Route path='/about' element={<About />} />
+					<Route path='/signup' element={<Signup />} />
+					<Route path='/login' element={<Login />} />
+					{/* <Route path='/profile/:username' element={<Profile />} /> */}
+					<Route path='*' element={<NotFound />} />
+				</Routes>
+			</Router>
 		</div>
 	);
 }

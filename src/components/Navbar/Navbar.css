@@ -1,0 +1,111 @@
+.liponNav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(172, 81, 6, 0.767);
+    height: 10vh;
+    padding: 0px 20px;
+    margin:0px 0px;
+    position: relative;
+    
+}
+.leftSide{
+flex: 1;
+}
+.middleSide{
+    
+flex: 1;
+
+}
+.rightSide {
+flex: 1;
+
+}
+.logo span {
+    border: 2px solid white;
+    color: white;
+    padding: 8px;
+    font-size: 18px;
+    border-radius: 10px;
+    /* border-top-left-radius: 12px; */
+    background-color: rgba(218, 25, 25, 0.329);
+}
+.allLink {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+ 
+}
+
+.myLink {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 22px;
+    padding: 8px;
+    text-transform: uppercase;
+}
+.signout-btn{
+        color: rgb(255, 255, 255);
+            text-decoration: none;
+            font-size: 22px;
+            padding: 8px;
+            text-transform: uppercase;
+            cursor: pointer;
+}
+.signout-btn:hover {
+    color: rgb(255, 255, 255);
+
+}
+.myLink:hover {
+    color: rgb(255, 255, 255) ;
+    text-transform: uppercase;
+}
+
+.active-myLink {
+    color: rgb(255, 255, 255) ;
+    text-decoration: none;
+    font-size: 22px;
+    text-transform: uppercase;
+    border-bottom: 1px solid white;
+}
+.active-myLink:hover {
+    color: rgb(255, 255, 255) ;
+    text-transform: uppercase;
+}
+.toggleBut {
+    display: none;
+ }
+
+
+            @media (max-width: 768px) {
+                                .toggleBut {
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        color: rgb(255, 255, 255);
+                                        font-size: 22px;
+                                }
+                                
+                                .allLink {
+                                    display: none;
+                                }
+                                
+                                #notHidden {
+                                    position: absolute;
+                                    left: 0;
+                                    right: 0;
+                                    top: 74px;
+                                    height: 350px;
+                                    width: 100%;
+                                    background-color: rgb(172, 81, 6);
+
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    flex-direction: column;
+                                }
+
+               
+            }
+
