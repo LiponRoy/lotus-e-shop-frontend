@@ -1,11 +1,10 @@
 import React from 'react';
+import Hero from '../components/Hero';
 
 const Home = () => {
 	return (
-		<div className='w-full h-screen flex justify-center items-center bg-slate-500'>
-			<div className=' text-white'>
-				<span>Home</span>
-			</div>
+		<div>
+			<Hero></Hero>
 		</div>
 	);
 };
