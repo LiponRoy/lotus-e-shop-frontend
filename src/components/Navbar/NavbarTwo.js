@@ -16,7 +16,7 @@ const NavbarTwo = () => {
 				<div className='liponNav'>
 					<div className='leftSide'>
 						<div className='logo'>
-							<span>LR Furniture</span>
+							<span>Lotus E Shop</span>
 						</div>
 					</div>
 					<div className='middleSide'>
