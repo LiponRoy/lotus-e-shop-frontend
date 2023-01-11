@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Products from './pages/Products';
-import Signup from './pages/Signup';
+import Signup from './pages/signup/Signup';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import Home from './pages/Home';

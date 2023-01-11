@@ -1,0 +1,51 @@
+
+
+.form-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: rgb(130, 130, 130);
+}
+
+.my-signup-form {
+    padding: 42px;
+    border-radius: 8px;
+    
+}
+
+.heading_text {
+    font-size: 26px;
+    font-weight: 700;
+    color: #474747;
+}
+
+.errMessage {
+    color: rgb(138, 0, 0);
+    margin: 2px 2px;
+}
+
+.form-Input-me {
+    font-size: 19px;
+    width: 380px;
+    height: 50px;
+    border-radius: 5px;
+    margin: 8px 0px;
+    padding-left: 8px;
+    border: 1px solid #a6a6a6;
+}
+
+.form-submit-me {
+    font-size: 17px;
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #0ABDE3;
+    border: 1px solid #ffffff;
+    color: white;
+    padding: 10px 12px;
+    margin-top: 8px;
+}
+
