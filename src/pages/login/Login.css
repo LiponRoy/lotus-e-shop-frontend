@@ -1,0 +1,90 @@
+
+.form-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: rgb(130, 130, 130);
+}
+
+.my-signup-form {
+    background-color: #3fa411;
+    padding: 32px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+.heading_text {
+    font-size: 26px;
+    font-size: 26px;
+        font-weight: 700;
+        color: #474747;
+}
+
+.errMessage {
+    color: rgb(138, 0, 0);
+    margin: 2px 2px;
+}
+
+.form-Input-me {
+    font-size: 16px;
+    padding-left: 15px;
+    width: 380px;
+    height: 40px;
+    border-radius: 15px;
+    margin: 8px 0px;
+    border: 0px;
+}
+
+.login-form-submit-me {
+    font-size: 17px;
+        width: 120px;
+        height: 40px;
+        border-radius: 25px;
+        cursor: pointer;
+        background-color: #0ABDE3;
+        border: 1px solid #ffffff;
+        color: white;
+        padding: 2px 2px;
+        margin-top: 8px;
+}
+
+                  @media (max-width: 768px) {
+
+                        .heading_text {
+                            font-size: 20px;
+                            font-weight: 600;
+                            color: #474747;
+                        }
+                    
+                        .errMessage {
+                            color: rgb(138, 0, 0);
+                            margin: 1px 1px;
+                        }
+                    
+                        .form-Input-me {
+                            font-size: 16px;
+                            padding-left: 15px;
+                            width: 250px;
+                            height: 30px;
+                            border-radius: 10px;
+                            margin: 5px 0px;
+                            border: 0px;
+                        }
+                    
+                        .login-form-submit-me {
+                            font-size: 12px;
+                            width: 80px;
+                            height: 30px;
+                            border-radius: 15px;
+                            cursor: pointer;
+                            background-color: #0ABDE3;
+                            border: 1px solid #ffffff;
+                            color: white;
+                            padding: 2px 2px;
+                            margin-top: 5px;
+                        }
+
+        
+                  }
