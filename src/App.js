@@ -9,6 +9,8 @@ import Home from './pages/Home';
 import NavbarTwo from './components/Navbar/NavbarTwo';
 import About from './pages/About';
 import AddProduct from './pages/admin/addProduct/AddProduct';
+import NewProduct from './pages/admin/addProduct/NewProduct';
+import AddData from './pages/AddData';
 
 function App() {
 	return (
@@ -21,7 +23,8 @@ function App() {
 					<Route path='/about' element={<About />} />
 					<Route path='/signup' element={<Signup />} />
 					<Route path='/login' element={<Login />} />
-					<Route path='/addProduct' element={<AddProduct />} />
+					<Route path='/addData' element={<AddData />} />
+					{/* <Route path='/newProduct' element={<NewProduct />} /> */}
 					{/* <Route path='/profile/:username' element={<Profile />} /> */}
 					<Route path='*' element={<NotFound />} />
 				</Routes>

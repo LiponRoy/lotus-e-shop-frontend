@@ -3,6 +3,7 @@ import '../login/Login.css';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { useLoginAuthMutation } from '../../features/authApi';
 // yup schema
 const schema = yup
 	.object({
@@ -13,6 +14,7 @@ const schema = yup
 //End yup schema
 
 const Login = () => {
+	const [loginAuth, { isSuccess, isError, isLoading, error }] = useLoginAuthMutation();
 	// yup schema and hook form
 	const {
 		register,
@@ -23,7 +25,14 @@ const Login = () => {
 	});
 	// End yup schema and hook form
 
-	const onSubmit = (data) => {
+	useEffect(() => {
+		if (isSuccess) {
+			console.log('login success');
+		}
+	}, [isSuccess]);
+
+	const onSubmit = async (data) => {
+		await loginAuth(data);
 		console.log(data);
 	};
 	return (

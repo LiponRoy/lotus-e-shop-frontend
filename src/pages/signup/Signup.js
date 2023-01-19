@@ -3,6 +3,8 @@ import '../signup/Signup.css';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { useNavigate } from 'react-router-dom';
+import { useSignupAuthMutation } from '../../features/authApi';
 // yup schema
 const schema = yup
 	.object({
@@ -14,12 +16,24 @@ const schema = yup
 			.required('Name is required'),
 		Email: yup.string().email('Invalid email format').required('Email is required'),
 		Password: yup.string().required('Password is required'),
-		PasswordConfirmation: yup.string().oneOf([yup.ref('Password'), null], 'Passwords must match'),
+		// PasswordConfirmation: yup.string().oneOf([yup.ref('Password'), null], 'Passwords must match'),
 	})
 	.required();
 //End yup schema
 
 const Signup = () => {
+	const navigate = useNavigate();
+	const [signupAuth, { isSuccess, isError, isLoading, error }] = useSignupAuthMutation();
+
+	useEffect(() => {
+		if (isSuccess) {
+			navigate('/');
+		}
+		if (isError) {
+			console.log(error);
+		}
+	}, []);
+
 	// yup schema and hook form
 	const {
 		register,
@@ -30,7 +44,8 @@ const Signup = () => {
 	});
 
 	// End yup schema and hook form
-	const onSubmit = (data) => {
+	const onSubmit = async (data) => {
+		await signupAuth(data);
 		console.log(data);
 	};
 	return (
@@ -51,10 +66,10 @@ const Signup = () => {
 						<br></br>
 						<input className='form-Input-me' type='text' {...register('Password')} />
 						<p className='errMessage'>{errors.Password?.message}</p>
-						<label className=' font-bold'>Confirma Password</label>
+						{/* <label className=' font-bold'>Confirma Password</label>
 						<br></br>
 						<input className='form-Input-me' type='text' {...register('PasswordConfirmation')} />
-						<p className='errMessage'>{errors.PasswordConfirmation?.message}</p>
+						<p className='errMessage'>{errors.PasswordConfirmation?.message}</p> */}
 
 						<button className='signup-form-submit-me rounded-sm' type='submit'>
 							Signup
