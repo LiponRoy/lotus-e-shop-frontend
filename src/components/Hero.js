@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Hero() {
+const Hero = () => {
 	return (
 		<div>
 			<div className='h-[470px] md:h-[670px] w-full grid grid-cols-1 md:grid-cols-2 bg-gradient-to-b from-[#3498DB] to-slate-100'>
@@ -11,7 +11,7 @@ function Hero() {
 							<span>ON EVERY NEW</span>
 							<span>ARAVEL</span>
 							<span>COLLECTION</span>
-							<a class='w-32  text-white text-sm text-center bg-yellow-400 p-2 py-4 px-4 mt-8 rounded-full'>Explore Now</a>
+							<a className='w-32  text-white text-sm text-center bg-yellow-400 p-2 py-4 px-4 mt-8 rounded-full'>Explore Now</a>
 						</div>
 						<div className='md:hidden textPart h-screen w-full flex flex-col justify-center items-center'>
 							<img className='w-[50%]' src='/img/lady.png' alt='no imag' />
@@ -24,6 +24,6 @@ function Hero() {
 			</div>
 		</div>
 	);
-}
+};
 
 export default Hero;

@@ -8,14 +8,14 @@ import { useSignupAuthMutation } from '../../features/authApi';
 // yup schema
 const schema = yup
 	.object({
-		Name: yup
+		name: yup
 			.string()
 			.matches(/^[A-Za-z ]*$/, 'Please enter valid name')
 			.max(40)
 			.min(3)
 			.required('Name is required'),
-		Email: yup.string().email('Invalid email format').required('Email is required'),
-		Password: yup.string().required('Password is required'),
+		email: yup.string().email('Invalid email format').required('Email is required'),
+		password: yup.string().required('Password is required'),
 		// PasswordConfirmation: yup.string().oneOf([yup.ref('Password'), null], 'Passwords must match'),
 	})
 	.required();
@@ -23,7 +23,7 @@ const schema = yup
 
 const Signup = () => {
 	const navigate = useNavigate();
-	const [signupAuth, { isSuccess, isError, isLoading, error }] = useSignupAuthMutation();
+	const [signupAuth, { data: userData, isSuccess, isError, isLoading, error }] = useSignupAuthMutation();
 
 	useEffect(() => {
 		if (isSuccess) {
@@ -32,7 +32,7 @@ const Signup = () => {
 		if (isError) {
 			console.log(error);
 		}
-	}, []);
+	}, [isSuccess, error]);
 
 	// yup schema and hook form
 	const {
@@ -47,6 +47,7 @@ const Signup = () => {
 	const onSubmit = async (data) => {
 		await signupAuth(data);
 		console.log(data);
+		console.log('next data is : ' + userData);
 	};
 	return (
 		<>
@@ -56,16 +57,16 @@ const Signup = () => {
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<label className=' font-bold'>Name</label>
 						<br></br>
-						<input className='form-Input-me' type='text' {...register('Name')} />
-						<p className='errMessage'>{errors.Name?.message}</p>
+						<input className='form-Input-me' type='text' {...register('name')} />
+						<p className='errMessage'>{errors.name?.message}</p>
 						<label className=' font-bold'>Email</label>
 						<br></br>
-						<input className='form-Input-me' type='text' {...register('Email')} />
-						<p className='errMessage'>{errors.Email?.message}</p>
+						<input className='form-Input-me' type='text' {...register('email')} />
+						<p className='errMessage'>{errors.email?.message}</p>
 						<label className=' font-bold'>Password</label>
 						<br></br>
-						<input className='form-Input-me' type='text' {...register('Password')} />
-						<p className='errMessage'>{errors.Password?.message}</p>
+						<input className='form-Input-me' type='text' {...register('password')} />
+						<p className='errMessage'>{errors.password?.message}</p>
 						{/* <label className=' font-bold'>Confirma Password</label>
 						<br></br>
 						<input className='form-Input-me' type='text' {...register('PasswordConfirmation')} />

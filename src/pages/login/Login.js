@@ -4,18 +4,22 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useLoginAuthMutation } from '../../features/authApi';
+import { useNavigate } from 'react-router-dom';
+
 // yup schema
 const schema = yup
 	.object({
-		Email: yup.string().email('Invalid email format').required('Email is required'),
-		Password: yup.string().required('Password is required'),
+		email: yup.string().email('Invalid email format').required('Email is required'),
+		password: yup.string().required('Password is required'),
 	})
 	.required();
 //End yup schema
 
 const Login = () => {
+	const navigate = useNavigate();
 	const [loginAuth, { isSuccess, isError, isLoading, error }] = useLoginAuthMutation();
 	// yup schema and hook form
+
 	const {
 		register,
 		handleSubmit,
@@ -28,12 +32,17 @@ const Login = () => {
 	useEffect(() => {
 		if (isSuccess) {
 			console.log('login success');
+			navigate('/');
 		}
 	}, [isSuccess]);
 
 	const onSubmit = async (data) => {
 		await loginAuth(data);
-		console.log(data);
+		//  console.log(data);
+
+		if (isSuccess) {
+			console.log('login success');
+		}
 	};
 	return (
 		<>
@@ -43,12 +52,12 @@ const Login = () => {
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<label className=' font-bold'>Email</label>
 						<br></br>
-						<input className='form-Input-me' type='text' {...register('Email')} />
-						<p className='errMessage'>{errors.Email?.message}</p>
+						<input className='form-Input-me' type='text' {...register('email')} />
+						<p className='errMessage'>{errors.email?.message}</p>
 						<label className=' font-bold'>Password</label>
 						<br></br>
-						<input className='form-Input-me' type='text' {...register('Password')} />
-						<p className='errMessage'>{errors.Password?.message}</p>
+						<input className='form-Input-me' type='text' {...register('password')} />
+						<p className='errMessage'>{errors.password?.message}</p>
 
 						<button className='login-form-submit-me rounded-sm' type='submit'>
 							Login
