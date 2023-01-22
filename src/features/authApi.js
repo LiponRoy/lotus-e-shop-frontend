@@ -23,6 +23,17 @@ export const authApi = createApi({
 			}),
 			invalidatesTags: ['myAuth'],
 		}),
+		logOut: builder.mutation({
+			query: () => ({
+				url: 'auth/logout',
+				method: 'POST',
+				// body,
+			}),
+			invalidatesTags: ['myAuth'],
+		}),
+		// logOut: builder.query({
+		// 	query: () => ({ url: 'auth/logout', method: 'GET', providesTags: ['myAuth'] }),
+		// }),
 		getProfile: builder.query({
 			query: () => ({ url: 'auth/getUserProfile', method: 'GET', providesTags: ['myAuth'] }),
 		}),
@@ -35,4 +46,4 @@ export const authApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useSignupAuthMutation, useLoginAuthMutation, useGetProfileQuery } = authApi;
+export const { useSignupAuthMutation, useLoginAuthMutation, useGetProfileQuery, useLogOutMutation } = authApi;

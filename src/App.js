@@ -11,6 +11,7 @@ import About from './pages/About';
 import AddProduct from './pages/admin/addProduct/AddProduct';
 import NewProduct from './pages/admin/addProduct/NewProduct';
 import AddData from './pages/AddData';
+import RequireAuth from './pages/requireAuth/RequireAuth';
 
 function App() {
 	return (
@@ -18,7 +19,14 @@ function App() {
 			<Router>
 				<NavbarTwo></NavbarTwo>
 				<Routes>
-					<Route path='/' element={<Home />} />
+					<Route
+						path='/'
+						element={
+							<RequireAuth>
+								<Home />
+							</RequireAuth>
+						}
+					/>
 					<Route path='/products' element={<Products />} />
 					<Route path='/about' element={<About />} />
 					<Route path='/signup' element={<Signup />} />
