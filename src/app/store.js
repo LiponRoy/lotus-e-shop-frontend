@@ -1,8 +1,10 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import { authApi } from '../features/authApi';
+import { lamaAutApi } from '../features/lamaAutApi';
+import authSlice from '../features/auth/authSlice';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { PersistGate } from 'redux-persist/integration/react';
+
 const persistConfig = {
 	key: 'root',
 	version: 1,
@@ -10,7 +12,10 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-	[authApi.reducerPath]: authApi.reducer,
+	// for redux toolkit
+	auth: authSlice,
+	//for RTK Query
+	//[authApi.reducerPath]: authApi.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -23,7 +28,8 @@ export const store = configureStore({
 			serializableCheck: {
 				ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
 			},
-		}).concat(authApi.middleware),
+		}),
+	//.concat(authApi.middleware),
 });
 
 export const persistor = persistStore(store);

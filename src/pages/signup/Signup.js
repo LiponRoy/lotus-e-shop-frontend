@@ -4,7 +4,11 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-import { useSignupAuthMutation } from '../../features/authApi';
+import { useSelector, useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+import { FaUser } from 'react-icons/fa';
+import { registerApi, reset } from '../../features/auth/authSlice';
+import Spinner from '../../components/Spinner';
 // yup schema
 const schema = yup
 	.object({
@@ -23,16 +27,21 @@ const schema = yup
 
 const Signup = () => {
 	const navigate = useNavigate();
-	const [signupAuth, { data: userData, isSuccess, isError, isLoading, error }] = useSignupAuthMutation();
+	const dispatch = useDispatch();
+
+	const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth);
 
 	useEffect(() => {
-		if (isSuccess) {
+		if (isError) {
+			toast.error(message);
+		}
+
+		if (isSuccess || user) {
 			navigate('/');
 		}
-		if (isError) {
-			console.log(error);
-		}
-	}, [isSuccess, error]);
+
+		dispatch(reset());
+	}, [user, isError, isSuccess, message, navigate, dispatch]);
 
 	// yup schema and hook form
 	const {
@@ -45,15 +54,24 @@ const Signup = () => {
 
 	// End yup schema and hook form
 	const onSubmit = async (data) => {
-		await signupAuth(data);
-		console.log(data);
-		console.log('next data is : ' + userData);
+		await dispatch(registerApi(data));
+
+		// await signupAuth(data);
+		// console.log(data);
 	};
+
+	if (isLoading) {
+		return <Spinner />;
+	}
+
 	return (
 		<>
 			<div className='form-container bg-gradient-to-b from-[#3498DB] to-slate-100'>
 				<div className='my-signup-form bg-gradient-to-b from-[#B0D6EF] to-slate-100'>
-					<h1 className='heading_text text-center'>SIGNUP</h1>
+					<h1 className='heading_text text-center'>
+						<FaUser />
+						SIGNUP
+					</h1>
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<label className=' font-bold'>Name</label>
 						<br></br>
