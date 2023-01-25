@@ -21,13 +21,20 @@ function App() {
 			<Router>
 				<NavbarTwo />
 				<Routes>
-					<Route path='/' element={<Home />} />
+					<Route
+						path='/'
+						element={
+							<RequireAuth>
+								<Home />
+							</RequireAuth>
+						}
+					/>
 					<Route path='/products' element={<Products />} />
 					<Route path='/about' element={<About />} />
 					<Route path='/signup' element={<Signup />} />
 					<Route path='/login' element={<Login />} />
 					{/* <Route path='/addData' element={<AddData />} /> */}
-					{/* <Route path='/newProduct' element={<NewProduct />} /> */}
+					<Route path='/newProduct' element={<NewProduct />} />
 					{/* <Route path='/profile/:username' element={<Profile />} /> */}
 					<Route path='*' element={<NotFound />} />
 				</Routes>

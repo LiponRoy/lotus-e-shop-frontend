@@ -1,19 +1,19 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useGetProfileQuery } from '../../features/authApi';
 
 const RequireAuth = ({ children }) => {
-	const navigate = useNavigate();
-	const dispatch = useDispatch();
 	const { user } = useSelector((state) => state.auth);
+
+	const location = useLocation();
 
 	// if (loading) {
 	// 	return <Loading></Loading>;
 	// }
 
 	if (!user) {
-		return navigate('/login');
+		return <Navigate to='/login' state={{ from: location }} replace></Navigate>;
 	} else {
 		return children;
 	}
