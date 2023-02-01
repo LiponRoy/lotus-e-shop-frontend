@@ -19,7 +19,7 @@ const Hero = () => {
 					</div>
 				</div>
 				<div className='textPart h-screen w-full hidden md:flex flex-col justify-center items-center'>
-					<img className='w-[42%]' src='/img/lady.png' alt='no imag' />
+					<img className='w-[38%]' src='/img/lady.png' alt='no imag' />
 				</div>
 			</div>
 		</div>

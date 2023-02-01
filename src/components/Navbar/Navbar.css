@@ -2,11 +2,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: rgba(172, 81, 6, 0.767);
-    height: 10vh;
-    padding: 0px 20px;
+    background-color: #3599DB;
+    /* height: 10vh; */
+    padding: 5px 10px;
     margin:0px 0px;
     position: relative;
+    /* z-index: -1; */
     
 }
 .leftSide{
@@ -22,21 +23,25 @@ flex: 1;
 
 }
 .logo span {
-    border: 2px solid white;
     color: white;
+    font-weight: 700;
     padding: 8px;
-    font-size: 18px;
-    border-radius: 10px;
-    /* border-top-left-radius: 12px; */
-    background-color: rgba(218, 25, 25, 0.329);
+    font-size: 32px;
+
 }
 .allLink {
 
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    color: white;
+    
  
 }
+.allLink .everyLink:hover {
+ border-bottom: 4px solid #FF9F43;
+}
+
 
 .myLink {
     color: rgb(255, 255, 255);
@@ -44,6 +49,8 @@ flex: 1;
     font-size: 22px;
     padding: 8px;
     text-transform: uppercase;
+    cursor: pointer;
+   
 }
 .signout-btn{
         color: rgb(255, 255, 255);
@@ -86,6 +93,13 @@ flex: 1;
                                         color: rgb(255, 255, 255);
                                         font-size: 22px;
                                 }
+                                                                .logo span {
+                                                                    color: white;
+                                                                    font-weight: 500;
+                                                                    padding: 8px;
+                                                                    font-size: 18px;
+                                
+                                                                }
                                 
                                 .allLink {
                                     display: none;

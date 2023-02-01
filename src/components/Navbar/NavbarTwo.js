@@ -32,34 +32,51 @@ const NavbarTwo = () => {
 							<span>Lotus E Shop</span>
 						</div>
 					</div>
-					<div className='middleSide'></div>
-					<div className='rightSide'>
+					<div className='middleSide'>
 						<div className='allLink' id={showLinks ? 'notHidden' : ''}>
 							<Link onClick={closeFunc} className={({ isActive }) => (isActive ? ' active-myLink' : ' myLink')} to='/'>
-								Home
+								<span className='everyLink'>Home</span>
 							</Link>
 							<Link onClick={closeFunc} className={({ isActive }) => (isActive ? ' active-myLink' : ' myLink')} to='/products'>
-								Product
+								<span className='everyLink'>Product</span>
 							</Link>
 							<Link onClick={closeFunc} className={({ isActive }) => (isActive ? ' active-myLink' : ' myLink')} to='/about'>
-								About
+								<span className='everyLink'>About</span>
 							</Link>
-							<span>/ {user && user.name}</span>
-							{user ? (
-								<button className='btn' onClick={onLogout}>
-									<FaSignOutAlt /> Logout
-								</button>
-							) : (
-								<span className='mx-2 text-2xl'>
-									<Link onClick={closeFunc} className={({ isActive }) => (isActive ? ' active-myLink' : ' myLink')} to='/login'>
-										<FaSignInAlt /> Login
-									</Link>
-								</span>
-							)}
+							<div className='md:hidden'>
+								{/* <span>/ {user && user.name}</span> */}
+								{user ? (
+									<button className='btn btn-warning' onClick={onLogout}>
+										Logout
+									</button>
+								) : (
+									<span className='mx-2 text-2xl btn btn-warning'>
+										<Link onClick={closeFunc} className={({ isActive }) => (isActive ? ' active-myLink' : ' myLink')} to='/login'>
+											Login
+										</Link>
+									</span>
+								)}
+							</div>
 						</div>
+					</div>
+					<div className='rightSide'>
 						<div className='toggleBut' onClick={() => setShowLink(!showLinks)}>
 							{showLinks ? <FaRegWindowClose></FaRegWindowClose> : <FaBars></FaBars>}
 						</div>
+					</div>
+					<div className='hidden md:block'>
+						{/* <span>/ {user && user.name}</span> */}
+						{user ? (
+							<button className='btn btn-warning ' onClick={onLogout}>
+								Signout
+							</button>
+						) : (
+							<span className='mx-2 text-2xl'>
+								<Link onClick={closeFunc} className={({ isActive }) => (isActive ? ' active-myLink' : ' myLink')} to='/login'>
+									Signin
+								</Link>
+							</span>
+						)}
 					</div>
 				</div>
 			</div>
