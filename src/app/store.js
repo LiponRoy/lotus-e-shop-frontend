@@ -1,6 +1,7 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import authSlice from '../features/auth/authSlice';
 import productsReducer from '../features/products/productsSlice.js';
+import { getProductsApi } from '../features/products/getProductsApi.js';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -16,7 +17,7 @@ const rootReducer = combineReducers({
 	auth: authSlice,
 	products: productsReducer,
 	//for RTK Query
-	//[productApi.reducerPath]: productApi.reducer,
+	[getProductsApi.reducerPath]: getProductsApi.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -29,8 +30,7 @@ export const store = configureStore({
 			serializableCheck: {
 				ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
 			},
-		}),
-	//.concat(productApi.middleware),
+		}).concat(getProductsApi.middleware),
 });
 
 export const persistor = persistStore(store);
