@@ -1,18 +1,16 @@
-// Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-// import { url } from './api';
 
-// Define a service using a base URL and expected endpoints
-export const getProductsApi = createApi({
-	reducerPath: 'getProductsApi',
-	baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4000/api/' }),
+export const GetProductsApi = createApi({
+	reducerPath: 'GetProductsApi',
+	// baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4000/api/' }),
+	tagTypes: ['productMe'],
 	endpoints: (builder) => ({
-		getAllProducts: builder.query({
-			query: () => 'product/getAll',
+		getProductTasks: builder.query({
+			query: () => '/product/getAll',
+			transformResponse: (res) => res.reverse(),
+			providesTags: ['productMe'],
 		}),
 	}),
 });
 
-// Export hooks for usage in functional components, which are
-// auto-generated based on the defined endpoints
-export const { useGetAllProductsQuery } = getProductsApi;
+export const { useGetProductTasksQuery } = GetProductsApi;

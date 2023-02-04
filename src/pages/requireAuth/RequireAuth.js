@@ -1,7 +1,6 @@
 import React from 'react';
 import { Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { useGetProfileQuery } from '../../features/authApi';
 
 const RequireAuth = ({ children }) => {
 	const { user } = useSelector((state) => state.auth);
