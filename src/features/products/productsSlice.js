@@ -35,28 +35,69 @@ const productsSlice = createSlice({
 	name: 'products',
 	initialState,
 	reducers: {},
-	extraReducers: {
-		[productsFetch.pending]: (state, action) => {
-			state.status = 'pending';
-		},
-		[productsFetch.fulfilled]: (state, action) => {
-			state.items = action.payload;
-			state.status = 'success';
-		},
-		[productsFetch.rejected]: (state, action) => {
-			state.status = 'rejected';
-		},
-		[productsCreate.pending]: (state, action) => {
-			state.createStatus = 'pending';
-		},
-		[productsCreate.fulfilled]: (state, action) => {
-			state.items.push(action.payload);
-			state.createStatus = 'success';
-			toast.success('Product Created!');
-		},
-		[productsCreate.rejected]: (state, action) => {
-			state.createStatus = 'rejected';
-		},
+	// extraReducers: {
+	// 	[productsFetch.pending]: (state, action) => {
+	// 		return {
+	// 			...state,
+	// 			status: 'pending',
+	// 		};
+	// 	},
+	// 	[productsFetch.fulfilled]: (state, action) => {
+	// 		return {
+	// 			...state,
+	// 			items: action.payload,
+	// 			status: 'success',
+	// 		};
+	// 	},
+	// 	[productsFetch.rejected]: (state, action) => {
+	// 		return {
+	// 			status: 'rejected',
+	// 		};
+	// 	},
+	// 	[productsCreate.pending]: (state, action) => {
+	// 		return {
+	// 			...state,
+	// 			createStatus: 'pending',
+	// 		};
+	// 	},
+	// 	[productsCreate.fulfilled]: (state, action) => {
+	// 		return {
+	// 			items: [action.payload, ...state.items],
+	// 			createStatus: 'success',
+	// 			// toast.success('Product Created!'),
+	// 		};
+	// 	},
+	// 	[productsCreate.rejected]: (state, action) => {
+	// 		return {
+	// 			status: 'rejected',
+	// 		};
+	// 	},
+	// },
+	extraReducers: (builder) => {
+		builder
+			.addCase(productsFetch.pending, (state) => {
+				state.status = 'pending';
+			})
+			.addCase(productsFetch.fulfilled, (state, action) => {
+				state.items = action.payload;
+				state.status = 'success';
+			})
+			.addCase(productsFetch.rejected, (state, action) => {
+				state.status = 'rejected';
+			})
+			.addCase(productsCreate.pending, (state) => {
+				state.createStatus = 'pending';
+			})
+			.addCase(productsCreate.fulfilled, (state, action) => {
+				//state.items.push(action.payload);
+				state.items = [action.payload, ...state.items];
+				state.createStatus = 'success';
+				toast.success('product created Yeahoo!');
+			})
+			.addCase(productsCreate.rejected, (state, action) => {
+				state.createStatus = 'rejected';
+				toast.error('not created');
+			});
 	},
 });
 
