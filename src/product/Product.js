@@ -53,11 +53,13 @@ const Product = () => {
 		<div>
 			<div className='w-full text-center text-2xl md:text-4xl font-bold mt-4'>OUR LATEST PRODUCT</div>;
 			<div className=' flex flex-col items-center justify-center text-blue-800'>
-				<button onClick={() => selectBrand('samsung')}>Samsung</button>
+				<button onClick={() => selectBrand('men')}>men</button>
 				<br></br>
-				<button onClick={() => selectBrand('iphone')}>iPhone</button>
+				<button onClick={() => selectBrand('women')}>women</button>
 				<br></br>
-				<button onClick={() => selectBrand('xiomi')}>Xiomi</button>
+				<button onClick={() => selectBrand('tshirt')}>tshirt</button>
+				<br></br>
+				<button onClick={() => selectBrand('shirt')}>shirt</button>
 				<br></br>
 				<button onClick={() => allBrand()}>All</button>
 				<br></br>
@@ -65,19 +67,14 @@ const Product = () => {
 			<div className='w-full text-center text-2xl md:text-2xl font-bold mt-2'>Total Item : {items?.length}</div>;
 			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 m-12 mx-16'>
 				{data?.slice(pagesVisited, pagesVisited + usersPerPage).map((value, i) => (
-					<div key={i} className='card w-96 bg-base-100 shadow-xl'>
-						<figure className='px-10 pt-10'>
-							<img src={value?.image.url} alt='Shoes' className='rounded-xl' />
-						</figure>
-						<div className='card-body items-center text-center'>
-							<h2 className='card-title'>{value?.brand}</h2>
-							<p>{value?.name}</p>
-							<p>{value?.price}</p>
-							<p>{value?.desc}</p>
-							<div className='card-actions'>
-								<button className='btn btn-primary'>Buy Now</button>
-							</div>
-						</div>
+					<div>
+						<img src={value?.image.url} alt='Shoes' className='rounded-2xl' width={300} />
+						<span className='text-4xl mt-2 font-semibold '>
+							{value?.price}
+							<span className='text-xl'>TK</span>
+						</span>
+						<p className='text-2xl font-semibold'>{value?.name}</p>
+						<p className=''>{value?.desc}</p>
 					</div>
 				))}
 			</div>
