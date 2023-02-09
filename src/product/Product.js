@@ -39,7 +39,7 @@ const Product = () => {
 	//const [users, setUsers] = useState(data?.slice(0, 50));
 	const [pageNumber, setPageNumber] = useState(0);
 
-	const usersPerPage = 4;
+	const usersPerPage = 8;
 	const pagesVisited = pageNumber * usersPerPage;
 
 	const pageCount = Math.ceil(items?.length / usersPerPage);
@@ -51,33 +51,56 @@ const Product = () => {
 
 	return (
 		<div>
-			<div className='w-full text-center text-2xl md:text-4xl font-bold mt-4'>OUR LATEST PRODUCT</div>;
-			<div className=' flex flex-col items-center justify-center text-blue-800'>
-				<button onClick={() => selectBrand('men')}>men</button>
-				<br></br>
-				<button onClick={() => selectBrand('women')}>women</button>
-				<br></br>
-				<button onClick={() => selectBrand('tshirt')}>tshirt</button>
-				<br></br>
-				<button onClick={() => selectBrand('shirt')}>shirt</button>
-				<br></br>
-				<button onClick={() => allBrand()}>All</button>
-				<br></br>
+			<div className='w-full text-center text-2xl md:text-2xl font-bold'>
+				<div className=''>OUR LATEST PRODUCT</div>
+				<div className='text-xl'>Total Item {data.length}</div>
 			</div>
-			<div className='w-full text-center text-2xl md:text-2xl font-bold mt-2'>Total Item : {items?.length}</div>;
-			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 m-12 mx-16'>
-				{data?.slice(pagesVisited, pagesVisited + usersPerPage).map((value, i) => (
-					<div>
-						<img src={value?.image.url} alt='Shoes' className='rounded-2xl' width={300} />
-						<span className='text-4xl mt-2 font-semibold '>
-							{value?.price}
-							<span className='text-xl'>TK</span>
-						</span>
-						<p className='text-2xl font-semibold'>{value?.name}</p>
-						<p className=''>{value?.desc}</p>
+			<section class='text-gray-600 body-font'>
+				<div class='container mx-auto flex px-2 py-2 md:flex-row flex-col items-center'>
+					<div class='lg:max-w-lg lg:w-64 lg:h-screen mt-5'>
+						<div className=' flex flex-col items-center justify-start text-blue-800'>
+							<span className='mb-2 text-2xl'>categories</span>
+							<button className='my-1 bg-slate-500 w-32 text-white' onClick={() => selectBrand('men')}>
+								men
+							</button>
+
+							<button className='my-1 bg-slate-500 w-32 text-white' onClick={() => selectBrand('women')}>
+								women
+							</button>
+
+							<button className='my-1 bg-slate-500 w-32 text-white' onClick={() => selectBrand('tshirt')}>
+								tshirt
+							</button>
+
+							<button className='my-1 bg-slate-500 w-32 text-white' onClick={() => selectBrand('shirt')}>
+								shirt
+							</button>
+
+							<button className='my-1 bg-slate-500 w-32 text-white' onClick={() => allBrand()}>
+								All
+							</button>
+						</div>
 					</div>
-				))}
-			</div>
+					<div class='lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center '>
+						<div className='w-auto'>
+							<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 m-12 mx-16'>
+								{data?.slice(pagesVisited, pagesVisited + usersPerPage).map((value, i) => (
+									<div>
+										<img src={value?.image.url} alt='Shoes' className='rounded-2xl' width={300} />
+										<span className='text-2xl mt-2 font-semibold '>
+											{value?.price}
+											<span className='text-xl'>TK</span>
+										</span>
+										<p className='text-xl font-semibold'>{value?.name}</p>
+										<p className=''>{value?.desc}</p>
+									</div>
+								))}
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			;<div className='flex items-center content-center'></div>
 			<div>
 				<ReactPaginate
 					previousLabel={'<'}
