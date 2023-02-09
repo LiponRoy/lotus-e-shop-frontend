@@ -68,12 +68,11 @@ const Product = () => {
 								women
 							</button>
 
-							<button className='my-1 bg-slate-500 w-32 text-white' onClick={() => selectBrand('tshirt')}>
-								tshirt
-							</button>
-
 							<button className='my-1 bg-slate-500 w-32 text-white' onClick={() => selectBrand('shirt')}>
 								shirt
+							</button>
+							<button className='my-1 bg-slate-500 w-32 text-white' onClick={() => selectBrand('tshirt')}>
+								tshirt
 							</button>
 
 							<button className='my-1 bg-slate-500 w-32 text-white' onClick={() => allBrand()}>
@@ -83,14 +82,19 @@ const Product = () => {
 					</div>
 					<div class='lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center '>
 						<div className='w-auto'>
-							<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 m-12 mx-16'>
+							<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 m-12 mx-16'>
 								{data?.slice(pagesVisited, pagesVisited + usersPerPage).map((value, i) => (
 									<div>
-										<img src={value?.image.url} alt='Shoes' className='rounded-2xl' width={300} />
+										{/* <img src={value?.image.url} alt='Shoes' className='rounded-2xl' width={300} /> */}
+										<div class='relative overflow-hidden bg-no-repeat bg-cover max-w-xs'>
+											<img src={value?.image.url} width={300} class='hover:scale-150 transition duration-300 ease-in-out' alt='noImg' />
+										</div>
+
 										<span className='text-2xl mt-2 font-semibold '>
 											{value?.price}
 											<span className='text-xl'>TK</span>
 										</span>
+										<button class='btn btn-sm btn-warning m-1 ml-2'>Buy now</button>
 										<p className='text-xl font-semibold'>{value?.name}</p>
 										<p className=''>{value?.desc}</p>
 									</div>
