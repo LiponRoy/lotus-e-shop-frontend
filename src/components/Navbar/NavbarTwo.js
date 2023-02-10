@@ -46,11 +46,11 @@ const NavbarTwo = () => {
 							<div className='md:hidden'>
 								{/* <span>/ {user && user.name}</span> */}
 								{user ? (
-									<button className='btn btn-warning' onClick={onLogout}>
+									<button className='btn-sm m-4 md:btn btn-warning ' onClick={onLogout}>
 										Logout
 									</button>
 								) : (
-									<span className='mx-2 text-2xl btn btn-warning'>
+									<span className='mx-2 text-2xl btn-sm m-4 md:btn btn-warning'>
 										<Link onClick={closeFunc} className={({ isActive }) => (isActive ? ' active-myLink' : ' myLink')} to='/login'>
 											Login
 										</Link>

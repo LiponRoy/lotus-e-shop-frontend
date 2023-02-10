@@ -2,11 +2,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #3599DB;
+    background-color: #646464;
     /* height: 10vh; */
     padding: 5px 10px;
     margin:0px 0px;
+    height: 70px;
     position: relative;
+    padding: 0px 50px;
     /* z-index: -1; */
     
 }
@@ -104,15 +106,17 @@ flex: 1;
                                 .allLink {
                                     display: none;
                                 }
+
+                                                                
                                 
                                 #notHidden {
                                     position: absolute;
                                     left: 0;
                                     right: 0;
-                                    top: 74px;
+                                    top: 70px;
                                     height: 350px;
                                     width: 100%;
-                                    background-color: rgb(172, 81, 6);
+                                    background-color: #646464;
 
                                     display: flex;
                                     justify-content: center;

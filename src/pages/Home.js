@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Footer from '../components/Footer';
 import Hero from '../components/Hero';
 import Product from '../product/Product';
 
@@ -7,6 +8,7 @@ const Home = () => {
 		<div>
 			<Hero></Hero>
 			<Product></Product>
+			<Footer></Footer>
 		</div>
 	);
 };

@@ -56,26 +56,26 @@ const Product = () => {
 				<div className='text-xl'>Total Item {data.length}</div>
 			</div>
 			<section className='text-gray-600 body-font'>
-				<div className='container mx-auto flex px-2 py-2 md:flex-row flex-col items-center'>
-					<div className='lg:max-w-lg lg:w-64 lg:h-screen mt-5'>
+				<div className='container mx-auto flex px-2  md:flex-row flex-col items-center'>
+					<div className='lg:max-w-lg lg:w-64 lg:h-screen'>
 						<div className=' flex flex-col items-center justify-start text-blue-800'>
-							<span className='mb-2 text-2xl'>categories</span>
-							<button className='my-1 bg-slate-500 w-32 text-white' onClick={() => selectBrand('men')}>
+							<span className='mb-2 text-2xl '>categories</span>
+							<button className='my-1 bg-[#646464] w-32 text-white' onClick={() => selectBrand('men')}>
 								men
 							</button>
 
-							<button className='my-1 bg-slate-500 w-32 text-white' onClick={() => selectBrand('women')}>
+							<button className='my-1 bg-[#646464] w-32 text-white' onClick={() => selectBrand('women')}>
 								women
 							</button>
 
-							<button className='my-1 bg-slate-500 w-32 text-white' onClick={() => selectBrand('shirt')}>
+							<button className='my-1 bg-[#646464] w-32 text-white' onClick={() => selectBrand('shirt')}>
 								shirt
 							</button>
-							<button className='my-1 bg-slate-500 w-32 text-white' onClick={() => selectBrand('tshirt')}>
+							<button className='my-1 bg-[#646464] w-32 text-white' onClick={() => selectBrand('tshirt')}>
 								tshirt
 							</button>
 
-							<button className='my-1 bg-slate-500 w-32 text-white' onClick={() => allBrand()}>
+							<button className='my-1 bg-[#646464] w-32 text-white' onClick={() => allBrand()}>
 								All
 							</button>
 						</div>
