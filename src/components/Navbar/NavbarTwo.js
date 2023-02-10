@@ -71,7 +71,7 @@ const NavbarTwo = () => {
 								Signout
 							</button>
 						) : (
-							<span className='mx-2 text-2xl'>
+							<span className='mx-2 text-2xl btn btn-warning'>
 								<Link onClick={closeFunc} className={({ isActive }) => (isActive ? ' active-myLink' : ' myLink')} to='/login'>
 									Signin
 								</Link>

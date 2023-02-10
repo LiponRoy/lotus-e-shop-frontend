@@ -68,10 +68,7 @@ const Signup = () => {
 		<>
 			<div className='form-container bg-gradient-to-b from-[#3498DB] to-slate-100'>
 				<div className='my-signup-form bg-gradient-to-b from-[#B0D6EF] to-slate-100'>
-					<h1 className='heading_text text-center'>
-						<FaUser />
-						SIGNUP
-					</h1>
+					<h1 className='heading_text text-center'>SIGNUP</h1>
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<label className=' font-bold'>Name</label>
 						<br></br>
@@ -85,14 +82,14 @@ const Signup = () => {
 						<br></br>
 						<input className='form-Input-me' type='text' {...register('password')} />
 						<p className='errMessage'>{errors.password?.message}</p>
-						{/* <label className=' font-bold'>Confirma Password</label>
-						<br></br>
-						<input className='form-Input-me' type='text' {...register('PasswordConfirmation')} />
-						<p className='errMessage'>{errors.PasswordConfirmation?.message}</p> */}
-
-						<button className='signup-form-submit-me rounded-sm' type='submit'>
-							Signup
-						</button>
+						<div className=' flex items-center justify-between'>
+							<button className='signup-form-submit-me rounded-sm text-black' type='submit'>
+								Signup
+							</button>
+							<span className=' cursor-pointer underline text-slate-900' onClick={() => navigate('/login')}>
+								Go for login
+							</span>
+						</div>
 					</form>
 				</div>
 			</div>

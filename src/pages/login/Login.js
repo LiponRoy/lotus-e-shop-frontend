@@ -65,10 +65,7 @@ const Login = () => {
 		<>
 			<div className='form-container bg-gradient-to-b from-[#3498DB] to-slate-100'>
 				<div className=' my-signup-form bg-gradient-to-b from-[#B0D6EF] to-slate-100'>
-					<h1 className='heading_text text-center'>
-						<FaSignInAlt />
-						Login
-					</h1>
+					<h1 className='heading_text text-center'>Login</h1>
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<label className=' font-bold'>Email</label>
 						<br></br>
@@ -79,9 +76,14 @@ const Login = () => {
 						<input className='form-Input-me' type='text' {...register('password')} />
 						<p className='errMessage'>{errors.password?.message}</p>
 
-						<button className='login-form-submit-me rounded-sm' type='submit'>
-							Login
-						</button>
+						<div className=' flex items-center justify-between'>
+							<button className='login-form-submit-me rounded-sm text-black' type='submit'>
+								Login
+							</button>
+							<span className=' cursor-pointer underline text-slate-900' onClick={() => navigate('/signup')}>
+								Go for signup
+							</span>
+						</div>
 					</form>
 				</div>
 			</div>

@@ -55,9 +55,9 @@ const Product = () => {
 				<div className=''>OUR LATEST PRODUCT</div>
 				<div className='text-xl'>Total Item {data.length}</div>
 			</div>
-			<section class='text-gray-600 body-font'>
-				<div class='container mx-auto flex px-2 py-2 md:flex-row flex-col items-center'>
-					<div class='lg:max-w-lg lg:w-64 lg:h-screen mt-5'>
+			<section className='text-gray-600 body-font'>
+				<div className='container mx-auto flex px-2 py-2 md:flex-row flex-col items-center'>
+					<div className='lg:max-w-lg lg:w-64 lg:h-screen mt-5'>
 						<div className=' flex flex-col items-center justify-start text-blue-800'>
 							<span className='mb-2 text-2xl'>categories</span>
 							<button className='my-1 bg-slate-500 w-32 text-white' onClick={() => selectBrand('men')}>
@@ -80,21 +80,20 @@ const Product = () => {
 							</button>
 						</div>
 					</div>
-					<div class='lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center '>
+					<div className='lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center '>
 						<div className='w-auto'>
 							<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 m-12 mx-16'>
 								{data?.slice(pagesVisited, pagesVisited + usersPerPage).map((value, i) => (
-									<div>
-										{/* <img src={value?.image.url} alt='Shoes' className='rounded-2xl' width={300} /> */}
-										<div class='relative overflow-hidden bg-no-repeat bg-cover max-w-xs'>
-											<img src={value?.image.url} width={300} class='hover:scale-150 transition duration-300 ease-in-out' alt='noImg' />
+									<div key={i}>
+										<div className='relative overflow-hidden bg-no-repeat bg-cover max-w-xs'>
+											<img src={value?.image.url} width={300} className='hover:scale-110 transition duration-300 ease-in-out' alt='noImg' />
 										</div>
 
 										<span className='text-2xl mt-2 font-semibold '>
 											{value?.price}
 											<span className='text-xl'>TK</span>
 										</span>
-										<button class='btn btn-sm btn-warning m-1 ml-2'>Buy now</button>
+										<button className='btn btn-sm btn-warning m-1 ml-2'>Buy now</button>
 										<p className='text-xl font-semibold'>{value?.name}</p>
 										<p className=''>{value?.desc}</p>
 									</div>

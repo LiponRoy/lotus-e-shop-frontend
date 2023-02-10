@@ -3,25 +3,20 @@ import React from 'react';
 const Hero = () => {
 	return (
 		<div>
-			<div className='h-[470px] md:h-[670px] w-full grid grid-cols-1 md:grid-cols-2 bg-gradient-to-b from-[#3498DB] to-slate-100'>
-				<div className='h-screen w-full flex flex-col justify-center items-center text-6xl text-right font-bold'>
-					<div className='flex justify-center items-center'>
-						<div className='flex flex-col justify-center items-end text-4xl md:text-6xl'>
-							<span className=' text-[#FF9F43]'>UPTO 60% OFF</span>
-							<span>ON EVERY NEW</span>
-							<span>ARAVEL</span>
-							<span>COLLECTION</span>
-							<a className='w-32  text-white text-sm text-center bg-yellow-400 p-2 py-4 px-4 mt-8 rounded-full'>Explore Now</a>
-						</div>
-						<div className='md:hidden textPart h-screen w-full flex flex-col justify-center items-center'>
-							<img className='w-[50%]' src='/img/lady.png' alt='no imag' />
-						</div>
+			<section className='px-3 py-5 bg-neutral-100 lg:py-10'>
+				<div className='grid lg:grid-cols-2 items-center justify-items-center gap-5'>
+					<div className='order-2 lg:order-1 flex flex-col justify-center items-center md:items-start'>
+						<span className='text-4xl font-bold md:text-7xl text-[#FF9F43]'>UPTO 60% OFF</span>
+						<span className='text-3xl font-bold md:text-5xl mt-4'>ON EVERY NEW</span>
+						<span className='text-3xl font-bold md:text-5xl mt-2'>ARAVEL</span>
+						<span className='text-3xl font-bold md:text-5xl mt-2'>COLLECTION</span>
+						<button className='text-lg md:text-2xl bg-yellow-400 text-white py-2 px-5 mt-10 hover:bg-zinc-800'>Explore Now</button>
+					</div>
+					<div className='order-1 lg:order-2'>
+						<img className='h-80 w-80 object-contain lg:w-[500px] lg:h-[500px]' src='/img/lady.png' alt='' />
 					</div>
 				</div>
-				<div className='textPart h-screen w-full hidden md:flex flex-col justify-center items-center'>
-					<img className='w-[38%]' src='/img/lady.png' alt='no imag' />
-				</div>
-			</div>
+			</section>
 		</div>
 	);
 };
