@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { FaBars, FaRegWindowClose, FaSearch } from 'react-icons/fa';
 import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa';
 import './Navbar.css';
@@ -23,6 +23,9 @@ const NavbarTwo = () => {
 	const closeFunc = () => {
 		setShowLink(false);
 	};
+
+	const activeLink = ({ isActive }) => (isActive ? ' active-myLink' : ' myLink');
+
 	return (
 		<>
 			<div className='container-fluid fixed-top'>
@@ -34,15 +37,15 @@ const NavbarTwo = () => {
 					</div>
 					<div className='middleSide'>
 						<div className='allLink' id={showLinks ? 'notHidden' : ''}>
-							<Link onClick={closeFunc} className={({ isActive }) => (isActive ? ' active-myLink' : ' myLink')} to='/'>
+							<NavLink onClick={closeFunc} className={activeLink} to='/'>
 								<span className='everyLink'>Home</span>
-							</Link>
-							<Link onClick={closeFunc} className={({ isActive }) => (isActive ? ' active-myLink' : ' myLink')} to='/products'>
+							</NavLink>
+							<NavLink onClick={closeFunc} className={activeLink} to='/products'>
 								<span className='everyLink'>Product</span>
-							</Link>
-							<Link onClick={closeFunc} className={({ isActive }) => (isActive ? ' active-myLink' : ' myLink')} to='/about'>
+							</NavLink>
+							<NavLink onClick={closeFunc} className={activeLink} to='/about'>
 								<span className='everyLink'>About</span>
-							</Link>
+							</NavLink>
 							<div className='md:hidden'>
 								{/* <span>/ {user && user.name}</span> */}
 								{user ? (
@@ -51,9 +54,9 @@ const NavbarTwo = () => {
 									</button>
 								) : (
 									<span className='mx-2 text-2xl btn-sm m-4 md:btn btn-warning'>
-										<Link onClick={closeFunc} className={({ isActive }) => (isActive ? ' active-myLink' : ' myLink')} to='/login'>
+										<NavLink onClick={closeFunc} className={activeLink} to='/login'>
 											Login
-										</Link>
+										</NavLink>
 									</span>
 								)}
 							</div>
@@ -72,9 +75,9 @@ const NavbarTwo = () => {
 							</button>
 						) : (
 							<span className='mx-2 text-2xl btn btn-warning'>
-								<Link onClick={closeFunc} className={({ isActive }) => (isActive ? ' active-myLink' : ' myLink')} to='/login'>
+								<NavLink onClick={closeFunc} className={activeLink} to='/login'>
 									Signin
-								</Link>
+								</NavLink>
 							</span>
 						)}
 					</div>

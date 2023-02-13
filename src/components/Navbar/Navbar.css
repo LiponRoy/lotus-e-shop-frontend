@@ -40,9 +40,7 @@ flex: 1;
     
  
 }
-.allLink .everyLink:hover {
- border-bottom: 4px solid #FF9F43;
-}
+
 
 
 .myLink {
@@ -76,12 +74,9 @@ flex: 1;
     text-decoration: none;
     font-size: 22px;
     text-transform: uppercase;
-    border-bottom: 1px solid white;
+    border-bottom: 4px solid #FF9F43;
 }
-.active-myLink:hover {
-    color: rgb(255, 255, 255) ;
-    text-transform: uppercase;
-}
+
 .toggleBut {
     display: none;
  }

@@ -1,11 +1,12 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { productsCreate } from "../../../features/products/productsSlice";
+import { productsCreate } from "../../../features/products/ProductSlice2.js";
 import styled from "styled-components";
 
 const CreateProduct = () => {
+
   const dispatch = useDispatch();
-  const { createStatus } = useSelector((state) => state.products);
+  const { isLoading,message} = useSelector((state) => state.products2);
 
   const [productImg, setProductImg] = useState("");
   const [brand, setBrand] = useState("");
@@ -84,7 +85,7 @@ const CreateProduct = () => {
         />
 
         <button type="submit">
-          {createStatus === "pending" ? "Submitting" : "Submit"}
+          { isLoading=== "pending" ? "Submitting" : "Submit"}
         </button>
       </StyledForm>
       <ImagePreview>

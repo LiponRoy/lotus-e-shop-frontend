@@ -9,16 +9,6 @@ const initialState = {
 	createStatus: null,
 };
 
-export const productsFetch = createAsyncThunk('products/productsFetch', async () => {
-	try {
-		const response = await axios.get('/product/getAll');
-
-		return response.data;
-	} catch (error) {
-		console.log(error);
-	}
-});
-
 export const productsCreate = createAsyncThunk('products/productsCreate', async (values) => {
 	try {
 		//const response = await axios.post(`${url}/products`, values, setHeaders());
@@ -31,60 +21,32 @@ export const productsCreate = createAsyncThunk('products/productsCreate', async 
 	}
 });
 
+export const productsFetch = createAsyncThunk('products/productsFetch', async () => {
+	try {
+		const response = await axios.get('/product/getAll');
+
+		return response.data;
+	} catch (error) {
+		console.log(error);
+	}
+});
+
+export const productFetchOne = createAsyncThunk('products/productFetchOne', async ({ _id }) => {
+	try {
+		const response = await axios.get('/product/getOne/' + _id);
+		return response.data;
+	} catch (error) {
+		console.log(error);
+	}
+});
+
 const productsSlice = createSlice({
 	name: 'products',
 	initialState,
 	reducers: {},
-	// extraReducers: {
-	// 	[productsFetch.pending]: (state, action) => {
-	// 		return {
-	// 			...state,
-	// 			status: 'pending',
-	// 		};
-	// 	},
-	// 	[productsFetch.fulfilled]: (state, action) => {
-	// 		return {
-	// 			...state,
-	// 			items: action.payload,
-	// 			status: 'success',
-	// 		};
-	// 	},
-	// 	[productsFetch.rejected]: (state, action) => {
-	// 		return {
-	// 			status: 'rejected',
-	// 		};
-	// 	},
-	// 	[productsCreate.pending]: (state, action) => {
-	// 		return {
-	// 			...state,
-	// 			createStatus: 'pending',
-	// 		};
-	// 	},
-	// 	[productsCreate.fulfilled]: (state, action) => {
-	// 		return {
-	// 			items: [action.payload, ...state.items],
-	// 			createStatus: 'success',
-	// 			// toast.success('Product Created!'),
-	// 		};
-	// 	},
-	// 	[productsCreate.rejected]: (state, action) => {
-	// 		return {
-	// 			status: 'rejected',
-	// 		};
-	// 	},
-	// },
+
 	extraReducers: (builder) => {
 		builder
-			.addCase(productsFetch.pending, (state) => {
-				state.status = 'pending';
-			})
-			.addCase(productsFetch.fulfilled, (state, action) => {
-				state.items = action.payload;
-				state.status = 'success';
-			})
-			.addCase(productsFetch.rejected, (state, action) => {
-				state.status = 'rejected';
-			})
 			.addCase(productsCreate.pending, (state) => {
 				state.createStatus = 'pending';
 			})
@@ -97,7 +59,27 @@ const productsSlice = createSlice({
 			.addCase(productsCreate.rejected, (state, action) => {
 				state.createStatus = 'rejected';
 				toast.error('not created');
+			})
+			.addCase(productsFetch.pending, (state) => {
+				state.status = 'pending';
+			})
+			.addCase(productsFetch.fulfilled, (state, action) => {
+				state.items = action.payload;
+				state.status = 'success';
+			})
+			.addCase(productsFetch.rejected, (state, action) => {
+				state.status = 'rejected';
 			});
+		// .addCase(productFetchOne.pending, (state) => {
+		// 	state.status = 'pending';
+		// })
+		// .addCase(productFetchOne.fulfilled, (state, action) => {
+		// 	state.items = action.payload;
+		// 	state.status = 'success';
+		// })
+		// .addCase(productFetchOne.rejected, (state, action) => {
+		// 	state.status = 'rejected';
+		// });
 	},
 });
 

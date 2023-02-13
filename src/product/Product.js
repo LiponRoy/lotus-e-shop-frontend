@@ -4,40 +4,48 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import './Product.css';
 import { useGetProductTasksQuery } from '../features/products/GetProductsApi';
-import { productsFetch } from '../features/products/productsSlice';
+import { productsFetch, reset } from '../features/products/ProductSlice2.js';
+import Spinner from '../components/Spinner';
+// import { productsFetch } from '../features/products/productsSlice';
 
 const Product = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-
-	const { items, status, createStatus } = useSelector((state) => state.products);
+	const { dataAll, isLoading, isError, message } = useSelector((state) => state.products2);
 
 	useEffect(() => {
-		if (status === 'success') {
-			dispatch(productsFetch());
+		if (isError) {
+			console.log(message);
 		}
-		console.log(items);
-	}, [items, dispatch]);
+
+		dispatch(productsFetch());
+
+		return () => {
+			dispatch(reset());
+		};
+	}, [isError, message, dispatch]);
 
 	// for search item
 	const [search, setSearch] = useState('');
-	console.log(search);
 
 	// for category
-	const [data, setData] = useState(items);
+	const [data, setData] = useState(dataAll);
+
+	console.log(data);
 
 	const selectBrand = (brandItem) => {
-		const filterResult = items.filter((curData) => {
+		const filterResult = dataAll.filter((curData) => {
 			return curData.brand === brandItem;
 		});
 		setData(filterResult);
 	};
 	// for all brands
 	const allBrand = () => {
-		setData(items);
+		setData(dataAll);
 	};
+
 	// end for category
-	useEffect(() => {}, [items, dispatch]);
+	// useEffect(() => {}, [dataAll, dispatch]);
 
 	// For paagenation
 	//const [users, setUsers] = useState(data?.slice(0, 50));
@@ -46,7 +54,7 @@ const Product = () => {
 	const usersPerPage = 8;
 	const pagesVisited = pageNumber * usersPerPage;
 
-	const pageCount = Math.ceil(items?.length / usersPerPage);
+	const pageCount = Math.ceil(dataAll?.length / usersPerPage);
 
 	const changePage = ({ selected }) => {
 		setPageNumber(selected);
@@ -59,17 +67,22 @@ const Product = () => {
 				{/* <div className='text-xl'>Total Item {data.length}</div> */}
 				<div className=' text-2xl m-1'>OUR LATEST PRODUCT </div>
 				<div className='text-md'>Total Item : {data.length}</div>
+				{isLoading && (
+					<span>
+						<Spinner></Spinner>
+					</span>
+				)}
 			</div>
 			<section className='text-gray-600 body-font'>
 				<div className='container mx-auto flex px-2  md:flex-row flex-col items-center'>
 					<div className='lg:max-w-lg lg:w-64 lg:h-screen'>
-						<div className=' flex flex-col items-start justify-center text-blue-800'>
+						<div className=' flex flex-col items-center justify-center  text-blue-800'>
 							{/* search here */}
-							<span className='mb-2 mt-4 text-1xl '>Search here :</span>
+							<span className='mb-2 mt-4 text-[17px] text-black '>Search here :</span>
 
 							<input onChange={(e) => setSearch(e.target.value)} type='text' placeholder='Search by name...' className='input input-bordered input-warning w-52 mb-4' />
 
-							<span className='mb-2 text-1xl '>Categories :</span>
+							<span className='mb-2 text-[17px] text-black'>Categories :</span>
 							<button className='my-1 bg-[#646464] w-52 h-8 rounded-md text-white' onClick={() => selectBrand('men')}>
 								men
 							</button>
@@ -95,6 +108,7 @@ const Product = () => {
 							<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 m-12 mx-16'>
 								{/* here slice() for categories and filter() for search option
 								  and map() for showing data */}
+
 								{data
 									?.slice(pagesVisited, pagesVisited + usersPerPage)
 									.filter((item) => {
@@ -102,7 +116,7 @@ const Product = () => {
 									})
 									.map((value, i) => (
 										<div key={i}>
-											<div className='relative overflow-hidden bg-no-repeat bg-cover max-w-xs'>
+											<div className='relative overflow-hidden bg-no-repeat bg-cover max-w-xs rounded-sm'>
 												<img src={value?.image.url} width={300} className='hover:scale-110 transition duration-300 ease-in-out' alt='noImg' />
 											</div>
 
@@ -110,9 +124,12 @@ const Product = () => {
 												{value?.price}
 												<span className='text-xl'>TK</span>
 											</span>
-											<button className='btn btn-sm btn-warning m-1 ml-2'>Buy now</button>
+											<button onClick={() => navigate(`/productDetail/${value?._id}`)} className='btn btn-sm btn-warning m-1 ml-2'>
+												Detail
+											</button>
 											<p className='text-xl font-semibold'>{value?.name}</p>
 											<p className=''>{value?.desc}</p>
+											<p className=''>{value?._id}</p>
 										</div>
 									))}
 							</div>

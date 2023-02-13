@@ -8,11 +8,11 @@ import NotFound from './pages/NotFound';
 import Home from './pages/Home';
 import NavbarTwo from './components/Navbar/NavbarTwo';
 import About from './pages/About';
-import AddData from './pages/AddData';
 import RequireAuth from './pages/requireAuth/RequireAuth';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CreateProduct from './pages/admin/products/CreateProduct';
+import ProductDetails from './pages/productDetail/ProductDetails';
 
 function App() {
 	return (
@@ -28,13 +28,13 @@ function App() {
 							</RequireAuth>
 						}
 					/>
-					<Route path='/products' element={<Products />} />
 					<Route path='/about' element={<About />} />
 					<Route path='/signup' element={<Signup />} />
 					<Route path='/login' element={<Login />} />
-					{/* <Route path='/addData' element={<AddData />} /> */}
 					<Route path='/createProduct' element={<CreateProduct />} />
-					{/* <Route path='/profile/:username' element={<Profile />} /> */}
+					<Route path='/products' element={<Products />} />
+					<Route path='/productDetail/:id' element={<ProductDetails />} />
+
 					<Route path='*' element={<NotFound />} />
 				</Routes>
 				<ToastContainer></ToastContainer>
