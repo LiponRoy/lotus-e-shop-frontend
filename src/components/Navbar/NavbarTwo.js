@@ -68,7 +68,7 @@ const NavbarTwo = () => {
 						</div>
 					</div>
 					<div className='hidden md:block'>
-						{/* <span>/ {user && user.name}</span> */}
+						{user && <span className='m-5 font-bold text-white'>Hi,{user.name}</span>}
 						{user ? (
 							<button className='btn btn-warning ' onClick={onLogout}>
 								Signout

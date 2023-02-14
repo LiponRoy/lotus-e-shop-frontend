@@ -6,24 +6,25 @@ import './Product.css';
 import { useGetProductTasksQuery } from '../features/products/GetProductsApi';
 import { productsFetch, reset } from '../features/products/ProductSlice2.js';
 import Spinner from '../components/Spinner';
-// import { productsFetch } from '../features/products/productsSlice';
 
 const Product = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const { dataAll, isLoading, isError, message } = useSelector((state) => state.products2);
-
+	const { dataAll, isLoading, isSuccess, isError, message } = useSelector((state) => state.products2);
+	console.log(dataAll);
 	useEffect(() => {
 		if (isError) {
 			console.log(message);
 		}
 
-		dispatch(productsFetch());
+		if (isSuccess) {
+			dispatch(productsFetch());
+		}
 
-		return () => {
-			dispatch(reset());
-		};
-	}, [isError, message, dispatch]);
+		// return () => {
+		// 	dispatch(reset());
+		// };
+	}, [isError, isSuccess, message, dispatch]);
 
 	// for search item
 	const [search, setSearch] = useState('');
@@ -39,16 +40,15 @@ const Product = () => {
 		});
 		setData(filterResult);
 	};
+
 	// for all brands
 	const allBrand = () => {
 		setData(dataAll);
 	};
 
 	// end for category
-	// useEffect(() => {}, [dataAll, dispatch]);
 
 	// For paagenation
-	//const [users, setUsers] = useState(data?.slice(0, 50));
 	const [pageNumber, setPageNumber] = useState(0);
 
 	const usersPerPage = 8;
@@ -64,14 +64,8 @@ const Product = () => {
 	return (
 		<div>
 			<div className='w-full text-center text-2xl md:text-2xl font-bold'>
-				{/* <div className='text-xl'>Total Item {data.length}</div> */}
 				<div className=' text-2xl m-1'>OUR LATEST PRODUCT </div>
 				<div className='text-md'>Total Item : {data.length}</div>
-				{isLoading && (
-					<span>
-						<Spinner></Spinner>
-					</span>
-				)}
 			</div>
 			<section className='text-gray-600 body-font'>
 				<div className='container mx-auto flex px-2  md:flex-row flex-col items-center'>
@@ -103,38 +97,41 @@ const Product = () => {
 							</button>
 						</div>
 					</div>
-					<div className='lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center '>
-						<div className='w-auto'>
-							<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 m-12 mx-16'>
-								{/* here slice() for categories and filter() for search option
+					{isLoading ? (
+						<Spinner></Spinner>
+					) : (
+						<div className='lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center '>
+							<div className='w-auto'>
+								<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 m-12 mx-16'>
+									{/* here slice() for categories and filter() for search option
 								  and map() for showing data */}
 
-								{data
-									?.slice(pagesVisited, pagesVisited + usersPerPage)
-									.filter((item) => {
-										return search.toLowerCase() === '' ? item : item.name.toLowerCase().includes(search);
-									})
-									.map((value, i) => (
-										<div key={i}>
-											<div className='relative overflow-hidden bg-no-repeat bg-cover max-w-xs rounded-sm'>
-												<img src={value?.image.url} width={300} className='hover:scale-110 transition duration-300 ease-in-out' alt='noImg' />
-											</div>
+									{data
+										?.slice(pagesVisited, pagesVisited + usersPerPage)
+										.filter((item) => {
+											return search.toLowerCase() === '' ? data : item.name.toLowerCase().includes(search);
+										})
+										.map((value, i) => (
+											<div key={i}>
+												<div className='relative overflow-hidden bg-no-repeat bg-cover max-w-xs rounded-sm'>
+													<img src={value?.image.url} width={300} className='hover:scale-110 transition duration-300 ease-in-out' alt='noImg' />
+												</div>
 
-											<span className='text-2xl mt-2 font-semibold '>
-												{value?.price}
-												<span className='text-xl'>TK</span>
-											</span>
-											<button onClick={() => navigate(`/productDetail/${value?._id}`)} className='btn btn-sm btn-warning m-1 ml-2'>
-												Detail
-											</button>
-											<p className='text-xl font-semibold'>{value?.name}</p>
-											<p className=''>{value?.desc}</p>
-											<p className=''>{value?._id}</p>
-										</div>
-									))}
+												<span className='text-2xl mt-2 font-semibold '>
+													{value?.price}
+													<span className='text-xl'>TK</span>
+												</span>
+												<button onClick={() => navigate(`/productDetail/${value?._id}`)} className='btn btn-sm btn-warning m-1 ml-2'>
+													Detail
+												</button>
+												<p className='text-xl font-semibold'>{value?.name}</p>
+												<p className=''>{value?.desc}</p>
+											</div>
+										))}
+								</div>
 							</div>
 						</div>
-					</div>
+					)}
 				</div>
 			</section>
 			;<div className='flex items-center content-center'></div>
