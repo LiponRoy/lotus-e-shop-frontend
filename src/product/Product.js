@@ -3,14 +3,13 @@ import ReactPaginate from 'react-paginate';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import './Product.css';
-import { useGetProductTasksQuery } from '../features/products/GetProductsApi';
-import { productsFetch, reset } from '../features/products/ProductSlice2.js';
 import Spinner from '../components/Spinner';
+import { productsFetch } from '../features/products/ProductSlice';
 
 const Product = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const { dataAll, isLoading, isSuccess, isError, message } = useSelector((state) => state.products2);
+	const { dataAll, isLoading, isSuccess, isError, message } = useSelector((state) => state.productRedux);
 	console.log(dataAll);
 	useEffect(() => {
 		if (isError) {
@@ -64,7 +63,7 @@ const Product = () => {
 	return (
 		<div>
 			<div className='w-full text-center text-2xl md:text-2xl font-bold'>
-				<div className=' text-2xl m-1'>OUR LATEST PRODUCT </div>
+				<div className=' text-2xl m-1'>OUR LATEST PRODUCT'S </div>
 				<div className='text-md'>Total Item : {data.length}</div>
 			</div>
 			<section className='text-gray-600 body-font'>

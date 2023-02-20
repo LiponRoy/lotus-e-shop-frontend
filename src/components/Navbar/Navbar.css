@@ -46,8 +46,8 @@ flex: 1;
 .myLink {
     color: rgb(255, 255, 255);
     text-decoration: none;
-    font-size: 22px;
-    padding: 8px;
+    font-size: 17px;
+    padding: 4px;
     text-transform: uppercase;
     cursor: pointer;
    
@@ -72,9 +72,11 @@ flex: 1;
 .active-myLink {
     color: rgb(255, 255, 255) ;
     text-decoration: none;
-    font-size: 22px;
+    font-size: 17px;
     text-transform: uppercase;
-    border-bottom: 4px solid #FF9F43;
+    border-bottom: 2px solid #FF9F43;
+    padding: 2px;
+    margin: 2px;
 }
 
 .toggleBut {

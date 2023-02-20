@@ -37,27 +37,29 @@ const NavbarTwo = () => {
 					</div>
 					<div className='middleSide'>
 						<div className='allLink' id={showLinks ? 'notHidden' : ''}>
-							<NavLink onClick={closeFunc} className={activeLink} to='/'>
+							{/* <NavLink onClick={closeFunc} className={activeLink} to='/'>
 								<span className='everyLink'>Home</span>
-							</NavLink>
-							<NavLink onClick={closeFunc} className={activeLink} to='/products'>
-								<span className='everyLink'>Product</span>
-							</NavLink>
-							<NavLink onClick={closeFunc} className={activeLink} to='/about'>
-								<span className='everyLink'>About</span>
-							</NavLink>
+							</NavLink> */}
+
 							<div className='md:hidden'>
 								{/* <span>/ {user && user.name}</span> */}
 								{user ? (
-									<button className='btn-sm m-4 md:btn btn-warning ' onClick={onLogout}>
+									<button className='text-white border-2 p-2' onClick={onLogout}>
 										Logout
 									</button>
 								) : (
-									<span className='mx-2 text-2xl btn-sm m-4 md:btn btn-warning'>
-										<NavLink onClick={closeFunc} className={activeLink} to='/login'>
-											Login
-										</NavLink>
-									</span>
+									<div className=''>
+										<span className='m-4'>
+											<NavLink onClick={closeFunc} className={activeLink} to='/login'>
+												Login
+											</NavLink>
+										</span>
+										<span className='m-4'>
+											<NavLink onClick={closeFunc} className={activeLink} to='/signup'>
+												Signup
+											</NavLink>
+										</span>
+									</div>
 								)}
 							</div>
 						</div>
@@ -70,14 +72,21 @@ const NavbarTwo = () => {
 					<div className='hidden md:block'>
 						{user && <span className='m-5 font-bold text-white'>Hi,{user.name}</span>}
 						{user ? (
-							<button className='btn btn-warning ' onClick={onLogout}>
+							<button className=' text-white border-2 p-2' onClick={onLogout}>
 								Signout
 							</button>
 						) : (
-							<span className='mx-2 text-2xl btn btn-warning'>
-								<NavLink onClick={closeFunc} className={activeLink} to='/login'>
-									Signin
-								</NavLink>
+							<span className='fm'>
+								<div className='mx-2'>
+									<NavLink onClick={closeFunc} className={activeLink} to='/login'>
+										Signin
+									</NavLink>
+								</div>
+								<div className='mx-2'>
+									<NavLink onClick={closeFunc} className={activeLink} to='/signup'>
+										Signup
+									</NavLink>
+								</div>
 							</span>
 						)}
 					</div>

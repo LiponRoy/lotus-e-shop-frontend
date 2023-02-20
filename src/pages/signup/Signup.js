@@ -37,7 +37,7 @@ const Signup = () => {
 		}
 
 		if (isSuccess || user) {
-			navigate('/');
+			navigate('/login');
 		}
 
 		dispatch(reset());
