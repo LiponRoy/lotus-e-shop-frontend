@@ -9,21 +9,17 @@ import { productsFetch } from '../features/products/ProductSlice';
 const Product = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const { dataAll, isLoading, isSuccess, isError, message } = useSelector((state) => state.productRedux);
+	const { dataAll, isLoading, isError, message } = useSelector((state) => state.productRedux);
 	console.log(dataAll);
 	useEffect(() => {
 		if (isError) {
 			console.log(message);
 		}
 
-		if (isSuccess) {
+		if (dataAll) {
 			dispatch(productsFetch());
 		}
-
-		// return () => {
-		// 	dispatch(reset());
-		// };
-	}, [isError, isSuccess, message, dispatch]);
+	}, [isError, message, dispatch]);
 
 	// for search item
 	const [search, setSearch] = useState('');
@@ -120,7 +116,7 @@ const Product = () => {
 													{value?.price}
 													<span className='text-xl'>TK</span>
 												</span>
-												<button onClick={() => navigate(`/productDetail/${value?._id}`)} className='btn btn-sm btn-warning m-1 ml-2'>
+												<button onClick={() => navigate(`/productDetail/${value?._id}`)} className='btn btn-sm bg-[#FF9F43] m-1 ml-2'>
 													Detail
 												</button>
 												<p className='text-xl font-semibold'>{value?.name}</p>

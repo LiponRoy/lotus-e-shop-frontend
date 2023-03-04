@@ -1,9 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-//const BASE_URL = 'http://localhost:4000/api/';
-
-// Get user from localStorage
-//const user = JSON.parse(localStorage.getItem('user'));
 
 const initialState = {
 	user: null,
@@ -16,7 +12,7 @@ const initialState = {
 // Register user
 export const registerApi = createAsyncThunk('auth/registerApi', async (user, thunkAPI) => {
 	try {
-		const response = await axios.post('/auth/signup', user);
+		const response = await axios.post('/api/auth/signup', user);
 		return response.data;
 	} catch (error) {
 		const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
@@ -27,7 +23,7 @@ export const registerApi = createAsyncThunk('auth/registerApi', async (user, thu
 // Login user
 export const loginApi = createAsyncThunk('auth/loginApi', async (user, thunkAPI) => {
 	try {
-		const response = await axios.post('/auth/signin', user);
+		const response = await axios.post('/api/auth/signin', user);
 		return response.data;
 	} catch (error) {
 		const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
@@ -37,7 +33,7 @@ export const loginApi = createAsyncThunk('auth/loginApi', async (user, thunkAPI)
 
 export const logoutApi = createAsyncThunk('auth/logoutApi', async (thunkAPI) => {
 	try {
-		const response = await axios.post('/auth/logout');
+		const response = await axios.post('/api/auth/logout');
 		return response.data;
 	} catch (error) {
 		const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();

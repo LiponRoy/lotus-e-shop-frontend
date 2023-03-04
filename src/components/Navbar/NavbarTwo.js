@@ -31,18 +31,13 @@ const NavbarTwo = () => {
 			<div className='container-fluid fixed-top'>
 				<div className='liponNav'>
 					<div className='leftSide'>
-						<div className='logo'>
-							<span>Lotus E Shop</span>
-						</div>
+						<NavLink className=' text-xl md:text-2xl text-white font-bold' to='/'>
+							Lotus <span className=' bg-[#FF9F43] p-1 md:px-4 rounded-md'>E Shop</span>
+						</NavLink>
 					</div>
 					<div className='middleSide'>
 						<div className='allLink' id={showLinks ? 'notHidden' : ''}>
-							{/* <NavLink onClick={closeFunc} className={activeLink} to='/'>
-								<span className='everyLink'>Home</span>
-							</NavLink> */}
-
 							<div className='md:hidden'>
-								{/* <span>/ {user && user.name}</span> */}
 								{user ? (
 									<button className='text-white border-2 p-2' onClick={onLogout}>
 										Logout

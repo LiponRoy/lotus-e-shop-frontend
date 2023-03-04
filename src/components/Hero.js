@@ -10,7 +10,7 @@ const Hero = () => {
 						<span className='text-3xl font-bold md:text-5xl mt-4'>ON EVERY NEW</span>
 						<span className='text-3xl font-bold md:text-5xl mt-2'>ARAVEL</span>
 						<span className='text-3xl font-bold md:text-5xl mt-2'>COLLECTION</span>
-						<button className='text-md md:text-2xl btn btn-md btn-warning text-white py-2 px-5 mt-2 md:mt-10 hover:bg-zinc-800'>
+						<button className='text-md md:text-2xl btn btn-md bg-[#FF9F43] text-white py-2 px-5 mt-2 md:mt-10 hover:bg-[#e9801e]'>
 							Explore Now <FaArrowRight></FaArrowRight>
 						</button>
 					</div>

@@ -14,7 +14,7 @@ const initialState = {
 // Create new goal
 export const productsCreate = createAsyncThunk('product/productsCreate', async (values, thunkAPI) => {
 	try {
-		const response = await axios.post('/product/create', values);
+		const response = await axios.post('/api/product/create', values);
 		return response.data;
 	} catch (error) {
 		const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
@@ -25,7 +25,7 @@ export const productsCreate = createAsyncThunk('product/productsCreate', async (
 // Get user goals
 export const productsFetch = createAsyncThunk('product/productsFetch', async (_, thunkAPI) => {
 	try {
-		const response = await axios.get('/product/getAll');
+		const response = await axios.get('/api/product/getAll');
 		return response.data;
 	} catch (error) {
 		const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
@@ -36,23 +36,13 @@ export const productsFetch = createAsyncThunk('product/productsFetch', async (_,
 // Delete user goal
 export const productFetchOne = createAsyncThunk('product/productFetchOne', async (id, thunkAPI) => {
 	try {
-		const response = await axios.get('/product/getOne/' + id);
+		const response = await axios.get('/api/product/getOne/' + id);
 		return response.data;
 	} catch (error) {
 		const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
 		return thunkAPI.rejectWithValue(message);
 	}
 });
-// Delete user goal
-// export const deleteGoal = createAsyncThunk('goals/delete', async (id, thunkAPI) => {
-// 	try {
-// 		const token = thunkAPI.getState().auth.user.token;
-// 		return await goalService.deleteGoal(id, token);
-// 	} catch (error) {
-// 		const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
-// 		return thunkAPI.rejectWithValue(message);
-// 	}
-// });
 
 export const productSlice = createSlice({
 	name: 'product',
