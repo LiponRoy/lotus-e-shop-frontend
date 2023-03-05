@@ -1,12 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-// import goalService from './goalService';
+const BASE_URI = 'https://liponroy-lotus-e-shop-backend-api-2023.onrender.com/api';
 
 const initialState = {
 	dataAll: [],
 	singleData: {},
 	isError: false,
-	isSuccess: false,
 	isLoading: false,
 	message: '',
 };
@@ -14,7 +13,7 @@ const initialState = {
 // Create new goal
 export const productsCreate = createAsyncThunk('product/productsCreate', async (values, thunkAPI) => {
 	try {
-		const response = await axios.post('/api/product/create', values);
+		const response = await axios.post(`${BASE_URI}/product/create`, values);
 		return response.data;
 	} catch (error) {
 		const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
@@ -25,7 +24,7 @@ export const productsCreate = createAsyncThunk('product/productsCreate', async (
 // Get user goals
 export const productsFetch = createAsyncThunk('product/productsFetch', async (_, thunkAPI) => {
 	try {
-		const response = await axios.get('/api/product/getAll');
+		const response = await axios.get(`${BASE_URI}/product/getAll`);
 		return response.data;
 	} catch (error) {
 		const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
@@ -36,7 +35,7 @@ export const productsFetch = createAsyncThunk('product/productsFetch', async (_,
 // Delete user goal
 export const productFetchOne = createAsyncThunk('product/productFetchOne', async (id, thunkAPI) => {
 	try {
-		const response = await axios.get('/api/product/getOne/' + id);
+		const response = await axios.get(`${BASE_URI}/product/getOne/${id}`);
 		return response.data;
 	} catch (error) {
 		const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
@@ -57,7 +56,6 @@ export const productSlice = createSlice({
 			})
 			.addCase(productsCreate.fulfilled, (state, action) => {
 				state.isLoading = false;
-				state.isSuccess = true;
 				state.dataAll.push(action.payload);
 			})
 			.addCase(productsCreate.rejected, (state, action) => {
@@ -70,7 +68,6 @@ export const productSlice = createSlice({
 			})
 			.addCase(productsFetch.fulfilled, (state, action) => {
 				state.isLoading = false;
-				state.isSuccess = true;
 				state.dataAll = action.payload;
 			})
 			.addCase(productsFetch.rejected, (state, action) => {
@@ -83,7 +80,6 @@ export const productSlice = createSlice({
 			})
 			.addCase(productFetchOne.fulfilled, (state, action) => {
 				state.isLoading = false;
-				state.isSuccess = true;
 				state.singleData = action.payload;
 			})
 			.addCase(productFetchOne.rejected, (state, action) => {

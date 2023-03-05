@@ -10,24 +10,18 @@ const Product = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const { dataAll, isLoading, isError, message } = useSelector((state) => state.productRedux);
-	console.log(dataAll);
+
+	// for search item
+	const [search, setSearch] = useState('');
+	// for category
+	const [data, setData] = useState(dataAll);
+
 	useEffect(() => {
 		if (isError) {
 			console.log(message);
 		}
-
-		if (dataAll) {
-			dispatch(productsFetch());
-		}
-	}, [isError, message, dispatch]);
-
-	// for search item
-	const [search, setSearch] = useState('');
-
-	// for category
-	const [data, setData] = useState(dataAll);
-
-	console.log(data);
+		dispatch(productsFetch());
+	}, []);
 
 	const selectBrand = (brandItem) => {
 		const filterResult = dataAll.filter((curData) => {

@@ -9,21 +9,15 @@ const ProductDetails = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
-	const { singleData, isLoading, isSuccess, isError, message } = useSelector((state) => state.productRedux);
+	const { singleData, isLoading, isError, message } = useSelector((state) => state.productRedux);
 
 	useEffect(() => {
 		if (isError) {
 			console.log(message);
 		}
 
-		if (isSuccess) {
-			dispatch(productFetchOne(id));
-		}
-
-		// return () => {
-		// 	dispatch(reset());
-		// };
-	}, [isError, isSuccess, message, dispatch]);
+		dispatch(productFetchOne(id));
+	}, []);
 
 	const goBackHomePage = () => {
 		navigate('/');

@@ -59,6 +59,6 @@
   "devDependencies": {
     "tailwindcss": "^3.2.4"
     
-  },
-  "proxy": "https://liponroy-lotus-e-shop-backend-api-2023.onrender.com"
+  }
+
 }
