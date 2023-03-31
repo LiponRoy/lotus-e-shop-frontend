@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { FaSignInAlt } from 'react-icons/fa';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { loginApi, reset } from '../../features/auth/authSlice';
@@ -76,13 +76,18 @@ const Login = () => {
 						<input className='form-Input-me' type='text' {...register('password')} />
 						<p className='errMessage'>{errors.password?.message}</p>
 
-						<div className=' flex items-center justify-between'>
+						<div className=' flex  items-start justify-between'>
 							<button className='login-form-submit-me rounded-sm text-black' type='submit'>
 								Login
 							</button>
-							<span className=' cursor-pointer underline text-slate-900' onClick={() => navigate('/signup')}>
-								Go for signup
-							</span>
+							<div className=''>
+								<span className='mt-4 text-sm cursor-pointer underline  text-slate-900' onClick={() => navigate('/signup')}>
+									Go for signup
+								</span>
+								<div className='mt-2 underline text-sm text-blue-900'>
+									<Link to='/sentEmail_forgotpassword'>Forgot Password?</Link>
+								</div>
+							</div>
 						</div>
 					</form>
 				</div>

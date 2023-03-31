@@ -29,7 +29,6 @@ const Product = () => {
 		});
 		setData(filterResult);
 	};
-
 	// for all brands
 	const allBrand = () => {
 		setData(dataAll);
@@ -50,11 +49,14 @@ const Product = () => {
 	};
 	// For paganation
 
+	//window.location.reload(true);
+
 	return (
 		<div>
 			<div className='w-full text-center text-2xl md:text-2xl font-bold'>
 				<div className=' text-2xl m-1'>OUR LATEST PRODUCT'S </div>
 				<div className='text-md'>Total Item : {data.length}</div>
+				<div className='text-md'>{data.length === 0 && <span>If you do not see any product please hit any category button</span>}</div>
 			</div>
 			<section className='text-gray-600 body-font'>
 				<div className='container mx-auto flex px-2  md:flex-row flex-col items-center'>

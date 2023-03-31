@@ -12,6 +12,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import CreateProduct from './pages/admin/products/CreateProduct';
 import ProductDetails from './pages/productDetail/ProductDetails';
 
+import NewResetPassword from './pages/forgetPassword/NewResetPassword';
+import SentEmailForgetPassword from './pages/forgetPassword/SentEmailForgetPassword';
+
 function App() {
 	return (
 		<div className='App'>
@@ -30,6 +33,9 @@ function App() {
 					<Route path='/login' element={<Login />} />
 					<Route path='/createProduct' element={<CreateProduct />} />
 					<Route path='/productDetail/:id' element={<ProductDetails />} />
+
+					<Route path='/sentEmail_forgotpassword' element={<SentEmailForgetPassword />} />
+					<Route path='/passwordreset/:resetToken' element={<NewResetPassword />} />
 
 					<Route path='*' element={<NotFound />} />
 				</Routes>
