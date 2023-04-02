@@ -1,6 +1,7 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import authSlice from '../features/auth/authSlice';
 import productsReducer from '../features/products/ProductSlice';
+import cartReducer from '../features/cart/cartSlice';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
 	// for redux toolkit
 	auth: authSlice,
 	productRedux: productsReducer,
+	cartAll: cartReducer,
 	//for RTK Query
 	// [GetProductsApi.reducerPath]: GetProductsApi.reducer,
 });

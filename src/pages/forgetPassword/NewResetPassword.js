@@ -19,6 +19,7 @@ const schema = yup
 const NewResetPassword = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+
 	const { resetToken } = useParams();
 
 	const { resetNewPassword, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth);
@@ -52,6 +53,7 @@ const NewResetPassword = () => {
 	const onSubmit = async (data) => {
 		const { password } = data;
 		console.log(resetToken, data);
+
 		await dispatch(newPasswordApi(resetToken, password));
 	};
 
