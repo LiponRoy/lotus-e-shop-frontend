@@ -14,6 +14,7 @@ import ProductDetails from './pages/productDetail/ProductDetails';
 
 import NewResetPassword from './pages/forgetPassword/NewResetPassword';
 import SentEmailForgetPassword from './pages/forgetPassword/SentEmailForgetPassword';
+import CartDetaials from './pages/cart/CartDetaials';
 
 function App() {
 	return (
@@ -36,6 +37,9 @@ function App() {
 
 					<Route path='/sentEmail_forgotpassword' element={<SentEmailForgetPassword />} />
 					<Route path='/passwordreset/:resetToken' element={<NewResetPassword />} />
+
+					{/* // cart all */}
+					<Route path='/cartDetaials' element={<CartDetaials />} />
 
 					<Route path='*' element={<NotFound />} />
 				</Routes>

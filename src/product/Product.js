@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import './Product.css';
 import Spinner from '../components/Spinner';
 import { productsFetch } from '../features/products/ProductSlice';
+import { addToCart, addToCartTwo } from '../features/cart/cartSlice';
 
 const Product = () => {
 	const navigate = useNavigate();
@@ -49,7 +50,11 @@ const Product = () => {
 	};
 	// For paganation
 
-	//window.location.reload(true);
+	// add to cart
+	const addToCartItem = (product) => {
+		dispatch(addToCartTwo(product));
+		// navigate('/cartDetaials');
+	};
 
 	return (
 		<div>
@@ -112,11 +117,16 @@ const Product = () => {
 													{value?.price}
 													<span className='text-xl'>TK</span>
 												</span>
+
 												<button onClick={() => navigate(`/productDetail/${value?._id}`)} className='btn btn-sm bg-[#FF9F43] m-1 ml-2'>
 													Detail
 												</button>
+												<button onClick={() => addToCartItem(value)} className='btn btn-sm bg-[#FF9F43] m-1 ml-2'>
+													Cart Add
+												</button>
 												<p className='text-xl font-semibold'>{value?.name}</p>
 												<p className=''>{value?.desc}</p>
+												<span className='text-sm mt-2'>cartQuantity: {value?.cartQuantity}</span>
 											</div>
 										))}
 								</div>

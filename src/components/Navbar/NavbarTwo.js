@@ -39,9 +39,12 @@ const NavbarTwo = () => {
 						<div className='allLink' id={showLinks ? 'notHidden' : ''}>
 							<div className='md:hidden'>
 								{user ? (
-									<button className='text-white border-2 p-2' onClick={onLogout}>
-										Logout
-									</button>
+									<div className=''>
+										<NavLink to='/cartDetaials'>Cart</NavLink>
+										<button className='text-white border-2 p-2' onClick={onLogout}>
+											Logout
+										</button>
+									</div>
 								) : (
 									<div className=''>
 										<span className='m-4'>
@@ -67,9 +70,12 @@ const NavbarTwo = () => {
 					<div className='hidden md:block'>
 						{user && <span className='m-5 font-bold text-white'>Hi,{user.name}</span>}
 						{user ? (
-							<button className=' text-white border-2 p-2' onClick={onLogout}>
-								Signout
-							</button>
+							<div className=''>
+								<NavLink to='/cartDetaials'>Cart</NavLink>
+								<button className=' text-white border-2 p-2' onClick={onLogout}>
+									Signout
+								</button>
+							</div>
 						) : (
 							<span className='fm'>
 								<div className='mx-2'>
