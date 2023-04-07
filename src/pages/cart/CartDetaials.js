@@ -1,16 +1,21 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { removeCart, decreaseQuantity, IncreaseQuantity } from '../../features/cart/cartSlice';
-
+import { removeCart, removeAllCart, decreaseQuantity, IncreaseQuantity, TotalsAmmount } from '../../features/cart/cartSlice';
+import { FcFullTrash } from 'react-icons/fc';
 const CartDetaials = () => {
 	const dispatch = useDispatch();
-	const { cartProducts } = useSelector((state) => state.cartAll);
+	const { cartProducts, totalQuantity, totalPrice } = useSelector((state) => state.cartAll);
 
-	useEffect(() => {}, [cartProducts]);
+	useEffect(() => {
+		dispatch(TotalsAmmount());
+	}, [cartProducts]);
 
 	const removeItem = (item) => {
 		dispatch(removeCart(item));
+	};
+	const allRemove = (item) => {
+		dispatch(removeAllCart(item));
 	};
 	const decrease = (item) => {
 		dispatch(decreaseQuantity(item));
@@ -45,20 +50,22 @@ const CartDetaials = () => {
 											+
 										</button>
 									</div>
-									<button className='btn btn-sm bg-orange-600 w-20 mt-2' onClick={() => removeItem(item)}>
-										Remove
+									<button className='mt-2 text-md text-start font-bold flex items-center' onClick={() => removeItem(item)}>
+										Remove <FcFullTrash></FcFullTrash>
 									</button>
 								</div>
 							</div>
 						))}
+						{cartProducts.length !== 0 && (
+							<button className='btn btn-outline mt-2' onClick={() => allRemove()}>
+								CLEAR ALL
+							</button>
+						)}
 					</div>
 					<div className='w-full flex items-start justify-center text-2xl bg-red-400 bg-slate-100 rounded'>
 						<div className='flex flex-col'>
-							<span>Bangladeshi !</span>
-							<span>Bangladeshi !</span>
-							<span>Bangladeshi !</span>
-							<span>Bangladeshi !</span>
-							<span>Bangladeshi !</span>
+							<span>Total Price : {totalPrice} TK</span>
+							<span>Total Quantity : {totalQuantity} </span>
 						</div>
 					</div>
 				</div>

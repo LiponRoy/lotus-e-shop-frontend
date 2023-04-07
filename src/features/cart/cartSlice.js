@@ -3,8 +3,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 const initialState = {
 	cartProducts: [],
 	cartItems: localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [],
-	cartTotalQuantity: 0,
-	cartTotalAmount: 0,
+	totalQuantity: 0,
+	totalPrice: 0,
 };
 
 export const cartSlice = createSlice({
@@ -37,6 +37,29 @@ export const cartSlice = createSlice({
 				state.cartProducts[cartIndex].cartQuantity += 1;
 			}
 		},
+		TotalsAmmount(state, action) {
+			let { total, quantity } = state.cartProducts.reduce(
+				(cartTotal, cartItem) => {
+					const { price, cartQuantity } = cartItem;
+					const itemTotal = price * cartQuantity;
+
+					cartTotal.total += itemTotal;
+					cartTotal.quantity += cartQuantity;
+
+					return cartTotal;
+				},
+				{
+					total: 0,
+					quantity: 0,
+				},
+			);
+			total = parseFloat(total.toFixed(2));
+			state.totalQuantity = quantity;
+			state.totalPrice = total;
+		},
+		removeAllCart(state, action) {
+			state.cartProducts = [];
+		},
 		removeCart(state, action) {
 			const deleteItem = state.cartProducts.filter((product) => {
 				return product._id !== action.payload._id;
@@ -46,5 +69,5 @@ export const cartSlice = createSlice({
 	},
 });
 
-export const { addToCartTwo, removeCart, decreaseQuantity, IncreaseQuantity } = cartSlice.actions;
+export const { addToCartTwo, removeCart, removeAllCart, decreaseQuantity, IncreaseQuantity, TotalsAmmount } = cartSlice.actions;
 export default cartSlice.reducer;

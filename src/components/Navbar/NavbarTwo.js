@@ -13,6 +13,7 @@ const NavbarTwo = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const { user } = useSelector((state) => state.auth);
+	const { cartProducts } = useSelector((state) => state.cartAll);
 
 	const onLogout = () => {
 		dispatch(logoutApi());
@@ -40,7 +41,6 @@ const NavbarTwo = () => {
 							<div className='md:hidden'>
 								{user ? (
 									<div className=''>
-										<NavLink to='/cartDetaials'>Cart</NavLink>
 										<button className='text-white border-2 p-2' onClick={onLogout}>
 											Logout
 										</button>
@@ -68,10 +68,15 @@ const NavbarTwo = () => {
 						</div>
 					</div>
 					<div className='hidden md:block'>
-						{user && <span className='m-5 font-bold text-white'>Hi,{user.name}</span>}
 						{user ? (
-							<div className=''>
-								<NavLink to='/cartDetaials'>Cart</NavLink>
+							<div className=' flex items-center gap-4'>
+								<div className=' text-white'>
+									<NavLink to='/cartDetaials '>
+										Cart : <span className='text-red-200 font-bold'>{cartProducts.length}</span>
+									</NavLink>
+								</div>
+								<span className=' font-bold text-white'>Hi,{user.name}</span>
+
 								<button className=' text-white border-2 p-2' onClick={onLogout}>
 									Signout
 								</button>
