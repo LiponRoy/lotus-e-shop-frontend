@@ -26,8 +26,8 @@ const CartDetaials = () => {
 	return (
 		<div>
 			<div className=' flex justify-center items-center'>
-				<div className=' grid grid-cols-1 md:grid-cols-2 mt-5'>
-					<div className=' '>
+				<div className=' grid grid-cols-1 md:grid-cols-2 gap-24'>
+					<div className=' mx-6'>
 						{cartProducts.length === 0 && <spn> Your Cart is Empty</spn>}
 						{cartProducts?.map((item) => (
 							<div key={item._id} className=' flex items-center  w-full my-4'>
@@ -62,10 +62,22 @@ const CartDetaials = () => {
 							</button>
 						)}
 					</div>
-					<div className='w-full flex items-start justify-center text-2xl bg-red-400 bg-slate-100 rounded'>
-						<div className='flex flex-col'>
-							<span>Total Price : {totalPrice} TK</span>
-							<span>Total Quantity : {totalQuantity} </span>
+					<div className='mx-6 w-full max-h-8 flex items-center justify-center text-2xl'>
+						<div class='card w-96 bg-base-100 shadow-xl'>
+							<div class='card-body'>
+								<h2 class='card-title text-2xl text-white bg-[#646464] p-[12px] '>ORDER SUMMARY!</h2>
+								<div className=' my-5'>
+									<div className=' flex item-center justify-between mx-2'>
+										<span>Total Price :</span>
+										<span className=' font-bold'>{totalPrice} TK</span>
+									</div>
+									<div className=' flex item-center justify-between mx-2'>
+										<span>Total Quantity :</span>
+										<span className=' font-bold'>{totalQuantity} </span>
+									</div>
+								</div>
+								<button class='btn btn-outline mt-20'>Checkout</button>
+							</div>
 						</div>
 					</div>
 				</div>

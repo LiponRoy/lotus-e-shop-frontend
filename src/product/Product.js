@@ -6,6 +6,7 @@ import './Product.css';
 import Spinner from '../components/Spinner';
 import { productsFetch } from '../features/products/ProductSlice';
 import { addToCart, addToCartTwo } from '../features/cart/cartSlice';
+import { BsCart2 } from 'react-icons/bs';
 
 const Product = () => {
 	const navigate = useNavigate();
@@ -108,25 +109,24 @@ const Product = () => {
 											return search.toLowerCase() === '' ? data : item.name.toLowerCase().includes(search);
 										})
 										.map((value, i) => (
-											<div key={i}>
+											<div className=' flex flex-col' key={i}>
 												<div className='relative overflow-hidden bg-no-repeat bg-cover max-w-xs rounded-sm'>
 													<img src={value?.image.url} width={300} className='hover:scale-110 transition duration-300 ease-in-out' alt='noImg' />
 												</div>
-
+												<div className=' flex items-center justify-between mt-4'>
+													<button onClick={() => navigate(`/productDetail/${value?._id}`)} className='font-bold underline'>
+														Detail
+													</button>
+													<button onClick={() => addToCartItem(value)} className=' font-bold underline'>
+														Add to Cart
+													</button>
+												</div>
 												<span className='text-2xl mt-2 font-semibold '>
 													{value?.price}
 													<span className='text-xl'>TK</span>
 												</span>
 
-												<button onClick={() => navigate(`/productDetail/${value?._id}`)} className='btn btn-sm bg-[#FF9F43] m-1 ml-2'>
-													Detail
-												</button>
-												<button onClick={() => addToCartItem(value)} className='btn btn-sm bg-[#FF9F43] m-1 ml-2'>
-													Cart Add
-												</button>
 												<p className='text-xl font-semibold'>{value?.name}</p>
-												<p className=''>{value?.desc}</p>
-												<span className='text-sm mt-2'>cartQuantity: {value?.cartQuantity}</span>
 											</div>
 										))}
 								</div>
