@@ -1,0 +1,17 @@
+.multiSliderHere {
+	margin: 12px;
+}
+.multiSliderHere h1 {
+	margin: 42px;
+	border-bottom: 1px solid black;
+	padding-bottom: 20px;
+}
+.iteamsHere {
+	width: 500px;
+}
+
+@media (max-width: 768px) {
+	.multiSliderHere {
+		display: none;
+	}
+}

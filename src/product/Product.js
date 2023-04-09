@@ -74,7 +74,7 @@ const Product = () => {
 		<div>
 			<div className='w-full text-center text-2xl md:text-2xl font-bold'>
 				<div className=' text-2xl m-1'>OUR LATEST PRODUCT'S </div>
-				<div className='text-md'>Total Item : {data.length}</div>
+				{/* <div className='text-md'>Total Item : {data.length}</div> */}
 				<div className='text-md'>{data.length === 0 && <span>No Data Found</span>}</div>
 			</div>
 			<section className='text-gray-600 body-font'>
