@@ -3,8 +3,8 @@ import { FaArrowRight } from 'react-icons/fa';
 const Hero = () => {
 	return (
 		<div>
-			<section className='px-3 py-5 bg-neutral-100 lg:py-10'>
-				<div className='grid lg:grid-cols-2 items-center justify-items-center gap-5'>
+			<section className='px-3 py-5 bg-neutral-100 lg:py-10 '>
+				<div className='grid lg:grid-cols-2 items-center justify-items-center gap-5 mt-10'>
 					<div className='order-2 lg:order-1 flex flex-col justify-center items-center md:items-start'>
 						<span className='text-4xl font-bold md:text-7xl text-[#FF9F43]'>UPTO 60% OFF</span>
 						<span className='text-3xl font-bold md:text-5xl mt-4'>ON EVERY NEW</span>

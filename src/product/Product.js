@@ -5,12 +5,14 @@ import { useNavigate } from 'react-router-dom';
 import './Product.css';
 import Spinner from '../components/Spinner';
 import { productsFetch } from '../features/products/ProductSlice';
-import { addToCart, addToCartTwo } from '../features/cart/cartSlice';
-import { BsCart2 } from 'react-icons/bs';
+import { addToCart } from '../features/cart/cartSlice';
+import { BsFillBasket2Fill } from 'react-icons/bs';
 
 const Product = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+
+	const { user } = useSelector((state) => state.auth);
 	const { dataAll, isLoading, isError, message } = useSelector((state) => state.productRedux);
 
 	// for search item
@@ -23,7 +25,7 @@ const Product = () => {
 			console.log(message);
 		}
 		dispatch(productsFetch());
-	}, []);
+	}, [dispatch]);
 
 	const selectBrand = (brandItem) => {
 		const filterResult = dataAll.filter((curData) => {
@@ -49,20 +51,31 @@ const Product = () => {
 	const changePage = ({ selected }) => {
 		setPageNumber(selected);
 	};
-	// For paganation
 
 	// add to cart
 	const addToCartItem = (product) => {
-		dispatch(addToCartTwo(product));
+		if (user) {
+			dispatch(addToCart(product));
+		} else {
+			navigate('/login');
+		}
+
 		// navigate('/cartDetaials');
 	};
+
+	useEffect(() => {
+		data.length === 0 &&
+			setTimeout(() => {
+				window.location.reload();
+			}, 300);
+	}, []);
 
 	return (
 		<div>
 			<div className='w-full text-center text-2xl md:text-2xl font-bold'>
 				<div className=' text-2xl m-1'>OUR LATEST PRODUCT'S </div>
 				<div className='text-md'>Total Item : {data.length}</div>
-				<div className='text-md'>{data.length === 0 && <span>If you do not see any product please hit any category button</span>}</div>
+				<div className='text-md'>{data.length === 0 && <span>No Data Found</span>}</div>
 			</div>
 			<section className='text-gray-600 body-font'>
 				<div className='container mx-auto flex px-2  md:flex-row flex-col items-center'>
@@ -117,8 +130,10 @@ const Product = () => {
 													<button onClick={() => navigate(`/productDetail/${value?._id}`)} className='font-bold underline'>
 														Detail
 													</button>
-													<button onClick={() => addToCartItem(value)} className=' font-bold underline'>
-														Add to Cart
+
+													<button onClick={() => addToCartItem(value)} className=' font-bold underline flex items-center'>
+														<BsFillBasket2Fill></BsFillBasket2Fill>
+														-Cart-add
 													</button>
 												</div>
 												<span className='text-2xl mt-2 font-semibold '>

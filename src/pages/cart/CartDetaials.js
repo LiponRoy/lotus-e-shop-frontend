@@ -25,8 +25,8 @@ const CartDetaials = () => {
 	};
 	return (
 		<div>
-			<div className=' flex justify-center items-center'>
-				<div className=' grid grid-cols-1 md:grid-cols-2 gap-24'>
+			<div className=' flex justify-center items-center '>
+				<div className=' grid grid-cols-1 md:grid-cols-2 gap-24 mt-20'>
 					<div className=' mx-6'>
 						{cartProducts.length === 0 && <spn> Your Cart is Empty</spn>}
 						{cartProducts?.map((item) => (

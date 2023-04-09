@@ -38,7 +38,6 @@ const ProductDetails = () => {
 								{singleData?.price}
 								<span className='text-xl'>TK</span>
 							</span>
-							<button className='btn btn-md btn-warning mt-2'>Buy now</button>
 							<p className='text-xl font-semibold'>{singleData?.name}</p>
 							<p className=''>{singleData?.desc}</p>
 							<button onClick={() => goBackHomePage()} className='btn btn-md mt-2'>

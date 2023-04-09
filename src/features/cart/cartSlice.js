@@ -11,14 +11,14 @@ export const cartSlice = createSlice({
 	name: 'cart',
 	initialState,
 	reducers: {
-		addToCartTwo(state, action) {
+		addToCart(state, action) {
 			let find = state.cartProducts.findIndex((item) => item._id === action.payload._id);
 			if (find >= 0) {
 				state.cartProducts[find].cartQuantity += 1;
-				toast.success('quantity increased');
+				toast.success('quantity increased', { position: 'bottom-right' });
 			} else {
 				state.cartProducts.push(action.payload);
-				toast.success('Added to cart');
+				toast.success('Added to cart', { position: 'bottom-right' });
 			}
 			console.log(action.payload_id);
 		},
@@ -64,17 +64,17 @@ export const cartSlice = createSlice({
 		},
 		removeAllCart(state, action) {
 			state.cartProducts = [];
-			toast.success('removed All');
+			toast.success('removed All', { position: 'bottom-right' });
 		},
 		removeCart(state, action) {
 			const deleteItem = state.cartProducts.filter((product) => {
 				return product._id !== action.payload._id;
 			});
 			state.cartProducts = deleteItem;
-			toast.success('removed cart');
+			toast.success('removed cart', { position: 'bottom-right' });
 		},
 	},
 });
 
-export const { addToCartTwo, removeCart, removeAllCart, decreaseQuantity, IncreaseQuantity, TotalsAmmount } = cartSlice.actions;
+export const { addToCart, removeCart, removeAllCart, decreaseQuantity, IncreaseQuantity, TotalsAmmount } = cartSlice.actions;
 export default cartSlice.reducer;

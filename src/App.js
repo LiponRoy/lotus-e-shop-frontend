@@ -22,24 +22,31 @@ function App() {
 			<Router>
 				<NavbarTwo />
 				<Routes>
-					<Route
-						path='/'
-						element={
-							<RequireAuth>
-								<Home />
-							</RequireAuth>
-						}
-					/>
+					<Route path='/' element={<Home />} />
 					<Route path='/signup' element={<Signup />} />
 					<Route path='/login' element={<Login />} />
 					<Route path='/createProduct' element={<CreateProduct />} />
-					<Route path='/productDetail/:id' element={<ProductDetails />} />
+					<Route
+						path='/productDetail/:id'
+						element={
+							<RequireAuth>
+								<ProductDetails />
+							</RequireAuth>
+						}
+					/>
 
 					<Route path='/sentEmail_forgotpassword' element={<SentEmailForgetPassword />} />
 					<Route path='/passwordreset/:resetToken' element={<NewResetPassword />} />
 
 					{/* // cart all */}
-					<Route path='/cartDetaials' element={<CartDetaials />} />
+					<Route
+						path='/cartDetaials'
+						element={
+							<RequireAuth>
+								<CartDetaials />
+							</RequireAuth>
+						}
+					/>
 
 					<Route path='*' element={<NotFound />} />
 				</Routes>
