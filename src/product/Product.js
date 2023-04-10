@@ -126,21 +126,22 @@ const Product = () => {
 												<div className='relative overflow-hidden bg-no-repeat bg-cover max-w-xs rounded-sm'>
 													<img src={value?.image.url} width={300} className='hover:scale-110 transition duration-300 ease-in-out' alt='noImg' />
 												</div>
-												<div className=' flex items-center justify-between mt-4'>
-													<button onClick={() => navigate(`/productDetail/${value?._id}`)} className='font-bold underline'>
+												<div className=' flex items-center justify-between mt-4 bg-[#646464] text-white p-2'>
+													<button onClick={() => navigate(`/productDetail/${value?._id}`)} className=' underline'>
+														{/* <BsFillBasket2Fill size='24px'></BsFillBasket2Fill> */}
 														Detail
 													</button>
 
-													<button onClick={() => addToCartItem(value)} className=' font-bold underline flex items-center'>
-														<BsFillBasket2Fill></BsFillBasket2Fill>
-														-Cart-add
+													<button onClick={() => addToCartItem(value)} className=' underline flex items-center'>
+														{/* <BsFillBasket2Fill size='24px'></BsFillBasket2Fill> */}
+														Add-To-Cart
 													</button>
 												</div>
+
 												<span className='text-2xl mt-2 font-semibold '>
 													{value?.price}
 													<span className='text-xl'>TK</span>
 												</span>
-
 												<p className='text-xl font-semibold'>{value?.name}</p>
 											</div>
 										))}

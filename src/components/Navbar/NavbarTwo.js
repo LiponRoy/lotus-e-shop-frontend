@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutApi, reset } from '../../features/auth/authSlice';
 import { BsBasket3Fill } from 'react-icons/bs';
+import { removeAllCart } from '../../features/cart/cartSlice';
+
 const NavbarTwo = () => {
 	const [showLinks, setShowLink] = useState(false);
 
@@ -19,6 +21,9 @@ const NavbarTwo = () => {
 		dispatch(logoutApi());
 		dispatch(reset());
 		navigate('/');
+
+		// remove this user all cart also
+		dispatch(removeAllCart());
 	};
 
 	const closeFunc = () => {

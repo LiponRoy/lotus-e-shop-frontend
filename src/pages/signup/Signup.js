@@ -36,12 +36,12 @@ const Signup = () => {
 			toast.error(message);
 		}
 
-		if (isSuccess || user) {
+		if (user) {
 			navigate('/login');
 		}
 
 		dispatch(reset());
-	}, [user, isError, isSuccess, message, navigate, dispatch]);
+	}, [user, isError, isSuccess, message, dispatch]);
 
 	// yup schema and hook form
 	const {
