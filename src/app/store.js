@@ -5,6 +5,7 @@ import cartReducer from '../features/cart/cartSlice';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { PersistGate } from 'redux-persist/integration/react';
+import filterSlice from '../features/filter/filterSlice';
 
 const persistConfig = {
 	key: 'root',
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
 	auth: authSlice,
 	productRedux: productsReducer,
 	cartAll: cartReducer,
+	filterS: filterSlice,
 	//for RTK Query
 	// [GetProductsApi.reducerPath]: GetProductsApi.reducer,
 });

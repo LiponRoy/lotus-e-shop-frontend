@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-// const BASE_URI = 'https://liponroy-lotus-e-shop-backend-api-2023.onrender.com/api';
+const BASE_URI = 'https://liponroy-lotus-e-shop-backend-api-2023.onrender.com/api';
 
 const initialState = {
 	dataAll: [],
@@ -14,7 +14,7 @@ const initialState = {
 export const productsCreate = createAsyncThunk('product/productsCreate', async (values, thunkAPI) => {
 	try {
 		// const response = await axios.post(`${BASE_URI}/product/create`, values);
-		const response = await axios.post(`/product/create`, values);
+		const response = await axios.post(`${BASE_URI}/product/create`, values);
 		return response.data;
 	} catch (error) {
 		const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
@@ -26,7 +26,7 @@ export const productsCreate = createAsyncThunk('product/productsCreate', async (
 export const productsFetch = createAsyncThunk('product/productsFetch', async (_, thunkAPI) => {
 	try {
 		// const response = await axios.get(`${BASE_URI}/product/getAll`);
-		const response = await axios.get(`/product/getAll`);
+		const response = await axios.get(`${BASE_URI}/product/getAll`);
 		return response.data;
 	} catch (error) {
 		const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
@@ -37,7 +37,7 @@ export const productsFetch = createAsyncThunk('product/productsFetch', async (_,
 // Delete user goal
 export const productFetchOne = createAsyncThunk('product/productFetchOne', async (id, thunkAPI) => {
 	try {
-		const response = await axios.get(`/product/getOne/${id}`);
+		const response = await axios.get(`${BASE_URI}/product/getOne/${id}`);
 		return response.data;
 	} catch (error) {
 		const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();

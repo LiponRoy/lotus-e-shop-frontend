@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// const BASE_URI = 'https://liponroy-lotus-e-shop-backend-api-2023.onrender.com/api';
+const BASE_URI = 'https://liponroy-lotus-e-shop-backend-api-2023.onrender.com/api';
 
 const initialState = {
 	user: null,
@@ -17,7 +17,7 @@ const initialState = {
 export const registerApi = createAsyncThunk('auth/registerApi', async (user, thunkAPI) => {
 	try {
 		// const response = await axios.post(`${BASE_URI}/auth/signup`, user);
-		const response = await axios.post('/auth/signup', user);
+		const response = await axios.post(`${BASE_URI}/auth/signup`, user);
 		return response.data;
 	} catch (error) {
 		const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
@@ -29,7 +29,7 @@ export const registerApi = createAsyncThunk('auth/registerApi', async (user, thu
 export const loginApi = createAsyncThunk('auth/loginApi', async (user, thunkAPI) => {
 	try {
 		// const response = await axios.post(BASE_URI + '/auth/signin', user);
-		const response = await axios.post('/auth/signin', user);
+		const response = await axios.post(BASE_URI + '/auth/signin', user);
 		return response.data;
 	} catch (error) {
 		const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
@@ -40,7 +40,7 @@ export const loginApi = createAsyncThunk('auth/loginApi', async (user, thunkAPI)
 export const logoutApi = createAsyncThunk('auth/logoutApi', async (thunkAPI) => {
 	try {
 		// const response = await axios.post(BASE_URI + '/auth/logout');
-		const response = await axios.post('/auth/logout');
+		const response = await axios.post(BASE_URI + '/auth/logout');
 		return response.data;
 	} catch (error) {
 		const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
@@ -53,7 +53,7 @@ export const logoutApi = createAsyncThunk('auth/logoutApi', async (thunkAPI) => 
 export const forgetPasswordApi = createAsyncThunk('auth/forgetPasswordApi', async (userEmail, thunkAPI) => {
 	try {
 		// const response = await axios.post(BASE_URI + '/auth/signup', user);
-		const response = await axios.post('/auth/forgotPassword', userEmail);
+		const response = await axios.post(BASE_URI + '/auth/forgotPassword', userEmail);
 		return response.data;
 	} catch (error) {
 		const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
@@ -64,7 +64,7 @@ export const forgetPasswordApi = createAsyncThunk('auth/forgetPasswordApi', asyn
 export const newPasswordApi = createAsyncThunk('auth/newPasswordApi', async (resetToken, password, thunkAPI) => {
 	try {
 		// const response = await axios.post(BASE_URI + '/auth/signup', user);
-		const response = await axios.put(`/auth/passwordReset/${resetToken}`, password);
+		const response = await axios.put(`${BASE_URI}/auth/passwordReset/${resetToken}`, password);
 		return response.data;
 	} catch (error) {
 		const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();

@@ -3,8 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { removeCart, removeAllCart, decreaseQuantity, IncreaseQuantity, TotalsAmmount } from '../../features/cart/cartSlice';
 import { FcFullTrash } from 'react-icons/fc';
+
 const CartDetaials = () => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
 	const { cartProducts, totalQuantity, totalPrice } = useSelector((state) => state.cartAll);
 
 	useEffect(() => {
@@ -72,11 +75,17 @@ const CartDetaials = () => {
 										<span className=' font-bold'>{totalPrice} TK</span>
 									</div>
 									<div className=' flex item-center justify-between mx-2'>
+										<span>Total product :</span>
+										<span className=' font-bold'>{cartProducts.length}</span>
+									</div>
+									<div className=' flex item-center justify-between mx-2'>
 										<span>Total Quantity :</span>
 										<span className=' font-bold'>{totalQuantity} </span>
 									</div>
 								</div>
-								<button class='btn btn-outline mt-20'>Checkout</button>
+								<button onClick={() => navigate('/payment')} class='btn btn-outline mt-20'>
+									Checkout
+								</button>
 							</div>
 						</div>
 					</div>

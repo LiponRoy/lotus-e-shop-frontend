@@ -102,8 +102,8 @@ const UpcomingProduct = () => {
 					{sliderItems.map((item) => (
 						<div className='cardMeHere'>
 							<div className='iteamsHere text-start'>
-								<img className=' rounded-xl hover:scale-110 transition duration-300 ease-in-out' src={item.img} alt='no img found' width='300' />
-								<h5 className=' my-4'>Price : {`${item.price}`} </h5>
+								<img className=' rounded-xl hover:scale-100 transition duration-300 ease-in-out' src={item.img} alt='no img found' width='300' />
+								<h5 className=' my-4 mt-6'>Price : {`${item.price}`} </h5>
 								{/* <h6>{daa.desc}</h6> */}
 							</div>
 						</div>

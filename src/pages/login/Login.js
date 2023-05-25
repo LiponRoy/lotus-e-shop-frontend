@@ -66,6 +66,7 @@ const Login = () => {
 			<div className='form-container bg-gradient-to-b from-[#3498DB] to-slate-100'>
 				<div className=' my-signup-form bg-gradient-to-b from-[#B0D6EF] to-slate-100'>
 					<h1 className='heading_text text-center'>Login</h1>
+					
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<label className=' font-bold'>Email</label>
 						<br></br>

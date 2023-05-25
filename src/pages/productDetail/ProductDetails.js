@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import Spinner from '../../components/Spinner.js';
+import { addToCart } from '../../features/cart/cartSlice.js';
 import { productFetchOne, reset } from '../../features/products/ProductSlice.js';
 
 const ProductDetails = () => {
@@ -17,10 +18,13 @@ const ProductDetails = () => {
 		}
 
 		dispatch(productFetchOne(id));
-	}, []);
+	}, [dispatch]);
 
 	const goBackHomePage = () => {
 		navigate('/');
+	};
+	const addToCartData = (singleProduct) => {
+		dispatch(addToCart(singleProduct));
 	};
 
 	return (
@@ -33,16 +37,22 @@ const ProductDetails = () => {
 						<div className='relative overflow-hidden bg-no-repeat bg-cover rounded-3xl'>
 							<img src={singleData?.image?.url} className=' w-[300px] md:w-[500px] hover:scale-110 transition duration-300 ease-in-out' alt='noImg' />
 						</div>
-						<div className=' flex flex-col justify-center items-start ml-14'>
-							<span className='text-4xl mt-2 font-semibold '>
+						<div className=' flex flex-col justify-center items-start mt-4 md:ml-14 my-2 md:gap-y-4'>
+							<p className='text-2xl md:text-4xl font-bold capitalize'>{singleData?.name}</p>
+							<span className='text-2xl md:text-4xl mt-2 font-semibold '>
+								<span className=' mr-4'>TK</span>
 								{singleData?.price}
-								<span className='text-xl'>TK</span>
 							</span>
-							<p className='text-xl font-semibold'>{singleData?.name}</p>
-							<p className=''>{singleData?.desc}</p>
-							<button onClick={() => goBackHomePage()} className='btn btn-md mt-2'>
-								BACK TO HOME
-							</button>
+
+							<p className=''>{singleData?.desc + 'something new '} </p>
+							<div className=' flex space-x-2'>
+								<button onClick={() => goBackHomePage()} className='btn btn-md mt-2'>
+									BACK TO HOME
+								</button>
+								<button onClick={() => addToCartData(singleData)} className='btn btn-md mt-2'>
+									Add To Card
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>
