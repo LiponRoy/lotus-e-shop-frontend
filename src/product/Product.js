@@ -9,6 +9,7 @@ import { addToCart } from '../features/cart/cartSlice';
 import { BsFillBasket2Fill } from 'react-icons/bs';
 import Search from '../components/search/Search';
 import { FILTER_BY_SEARCH, FILTER_BY_SORT } from '../features/filter/filterSlice';
+import FilterByCategory from '../components/filterByCategory/FilterByCategory';
 
 const Product = () => {
 	const navigate = useNavigate();
@@ -58,7 +59,6 @@ const Product = () => {
 						<div className=' flex flex-col items-center justify-center '>
 							search
 							<Search value={searchProduct} onChange={(e) => setSearchProduct(e.target.value)} />
-							<span className=' my-2'>Sort product</span>
 							<select value={sort} onChange={(e) => setSort(e.target.value)}>
 								<option value='latest'>Latest</option>
 								<option value='lowest-price'>Lowest-Price</option>
@@ -66,6 +66,8 @@ const Product = () => {
 								<option value='a-z'>A-Z</option>
 								<option value='z-a'>Z-A</option>
 							</select>
+							<span>Filter By Category :</span>
+							<FilterByCategory />;<span className=' my-2'>Sort product</span>
 						</div>
 					</div>
 					{isLoading ? (

@@ -37,10 +37,23 @@ const filterSlice = createSlice({
 
 			state.filteredProducts = tempProduct;
 		},
+		FILTER_BY_CATEGORY(state, action) {
+			// console.log(action.payload);
+			const { dataAll, cat } = action.payload;
+			let tempProduct = [];
+
+			if (cat === 'All') {
+				tempProduct = dataAll;
+			} else {
+				tempProduct = dataAll.filter((prod) => prod.brand === cat);
+			}
+
+			state.filteredProducts = tempProduct;
+		},
 	},
 });
 
-export const { FILTER_BY_SEARCH, FILTER_BY_SORT } = filterSlice.actions;
+export const { FILTER_BY_SEARCH, FILTER_BY_SORT, FILTER_BY_CATEGORY } = filterSlice.actions;
 
 // export const selectFilteredProducts = (state) => state.filter.filteredProducts;
 
