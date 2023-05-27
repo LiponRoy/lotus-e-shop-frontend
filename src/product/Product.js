@@ -8,7 +8,7 @@ import { productsFetch } from '../features/products/ProductSlice';
 import { addToCart } from '../features/cart/cartSlice';
 import { BsFillBasket2Fill } from 'react-icons/bs';
 import Search from '../components/search/Search';
-import { FILTER_BY_SEARCH } from '../features/filter/filterSlice';
+import { FILTER_BY_SEARCH, FILTER_BY_SORT } from '../features/filter/filterSlice';
 
 const Product = () => {
 	const navigate = useNavigate();
@@ -19,10 +19,15 @@ const Product = () => {
 
 	// for search item
 	const [searchProduct, setSearchProduct] = useState('');
+	const [sort, setSort] = useState('latest');
 
 	useEffect(() => {
 		dispatch(productsFetch());
 	}, []);
+
+	useEffect(() => {
+		dispatch(FILTER_BY_SORT({ dataAll, sort }));
+	}, [dispatch, dataAll, sort]);
 
 	useEffect(() => {
 		dispatch(FILTER_BY_SEARCH({ dataAll, searchProduct }));
@@ -50,7 +55,18 @@ const Product = () => {
 			<section className='text-gray-600 body-font'>
 				<div className='container mx-auto flex px-2  md:flex-row flex-col items-center'>
 					<div className='lg:max-w-lg lg:w-64 lg:h-screen'>
-						<Search value={searchProduct} onChange={(e) => setSearchProduct(e.target.value)} />
+						<div className=' flex flex-col items-center justify-center '>
+							search
+							<Search value={searchProduct} onChange={(e) => setSearchProduct(e.target.value)} />
+							<span className=' my-2'>Sort product</span>
+							<select value={sort} onChange={(e) => setSort(e.target.value)}>
+								<option value='latest'>Latest</option>
+								<option value='lowest-price'>Lowest-Price</option>
+								<option value='hight-price'>High-Price</option>
+								<option value='a-z'>A-Z</option>
+								<option value='z-a'>Z-A</option>
+							</select>
+						</div>
 					</div>
 					{isLoading ? (
 						<Spinner></Spinner>
