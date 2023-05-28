@@ -2,19 +2,34 @@ import React from 'react';
 import { Button, Space } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { FILTER_BY_CATEGORY } from '../../features/filter/filterSlice';
+import { FILTER_BY_CATEGORY, FILTER_BY_PRICE } from '../../features/filter/filterSlice';
+import { useEffect } from 'react';
 
 const FilterByCategory = () => {
 	const dispatch = useDispatch();
-	const { dataAll, isLoading, isError, message } = useSelector((state) => state.productRedux);
+	const { dataAll, minPrice, maxPrice } = useSelector((state) => state.productRedux);
+
 
 	const allCategory = ['All', ...new Set(dataAll.map((prod) => prod.brand))];
 
 	const [category, setCategory] = useState('All');
+	const [price, setPrice] = useState(maxPrice);
+
 
 	const filterProduct = (cat) => {
 		setCategory(cat);
 		dispatch(FILTER_BY_CATEGORY({ dataAll, cat }));
+	};
+
+
+	useEffect(() => {
+		dispatch(FILTER_BY_PRICE({ dataAll, price }));
+	}, [dispatch, dataAll, price]);
+
+	const clearFilters = () => {
+		setCategory("All");
+		// setBrand("All");
+		setPrice(maxPrice);
 	};
 
 	return (
@@ -27,6 +42,20 @@ const FilterByCategory = () => {
 							{cat}
 						</Button>
 					))}
+					<h4>Price</h4>
+					<p>{`$${price}`}</p>
+					<div className='text-blue-700'>
+						<input
+							type="range"
+							value={price}
+							onChange={(e) => setPrice(e.target.value)}
+							min={minPrice}
+							max={maxPrice}
+						/>
+					</div>
+					<button className=" btn btn-primary my-4" onClick={clearFilters}>
+						Clear Filter
+					</button>
 				</div>
 			}
 		</div>

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import './Product.css';
 import Spinner from '../components/Spinner';
-import { productsFetch } from '../features/products/ProductSlice';
+import { GET_PRICE_RANGE, productsFetch } from '../features/products/ProductSlice';
 import { addToCart } from '../features/cart/cartSlice';
 import { BsFillBasket2Fill } from 'react-icons/bs';
 import Search from '../components/search/Search';
@@ -12,6 +12,7 @@ import { FILTER_BY_SEARCH, FILTER_BY_SORT } from '../features/filter/filterSlice
 import FilterByCategory from '../components/filterByCategory/FilterByCategory';
 
 const Product = () => {
+
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
@@ -24,6 +25,7 @@ const Product = () => {
 
 	useEffect(() => {
 		dispatch(productsFetch());
+		dispatch(GET_PRICE_RANGE({dataAll}));
 	}, []);
 
 	useEffect(() => {
@@ -57,8 +59,9 @@ const Product = () => {
 				<div className='container mx-auto flex px-2  md:flex-row flex-col items-center'>
 					<div className='lg:max-w-lg lg:w-64 lg:h-screen'>
 						<div className=' flex flex-col items-center justify-center '>
-							search
+							<div className="">search</div>
 							<Search value={searchProduct} onChange={(e) => setSearchProduct(e.target.value)} />
+							<span className=' my-2'>Sort product</span>
 							<select value={sort} onChange={(e) => setSort(e.target.value)}>
 								<option value='latest'>Latest</option>
 								<option value='lowest-price'>Lowest-Price</option>
@@ -66,8 +69,8 @@ const Product = () => {
 								<option value='a-z'>A-Z</option>
 								<option value='z-a'>Z-A</option>
 							</select>
-							<span>Filter By Category :</span>
-							<FilterByCategory />;<span className=' my-2'>Sort product</span>
+							<span className=' mt-4'>Filter By Category :</span>
+							<FilterByCategory />
 						</div>
 					</div>
 					{isLoading ? (

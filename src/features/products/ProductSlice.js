@@ -8,6 +8,10 @@ const initialState = {
 	isError: false,
 	isLoading: false,
 	message: '',
+
+	// for price filtering
+	minPrice: 0,
+	maxPrice: 0,
 };
 
 // Create new goal
@@ -50,6 +54,24 @@ export const productSlice = createSlice({
 	initialState,
 	reducers: {
 		reset: (state) => initialState,
+
+		GET_PRICE_RANGE(state, action) {
+			const { dataAll } = action.payload;
+			const array = [];
+			dataAll.map((product) => {
+			  const price = product.price;
+			  return array.push(price);
+			});
+			const max = Math.max(...array);
+			const min = Math.min(...array);
+	  
+			state.minPrice = min;
+			state.maxPrice = max;
+		  },
+
+
+
+
 	},
 	extraReducers: (builder) => {
 		builder
@@ -92,5 +114,5 @@ export const productSlice = createSlice({
 	},
 });
 
-export const { reset } = productSlice.actions;
+export const { reset, GET_PRICE_RANGE } = productSlice.actions;
 export default productSlice.reducer;
