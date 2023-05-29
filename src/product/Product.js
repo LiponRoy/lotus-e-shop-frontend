@@ -10,9 +10,9 @@ import { BsFillBasket2Fill } from 'react-icons/bs';
 import Search from '../components/search/Search';
 import { FILTER_BY_SEARCH, FILTER_BY_SORT } from '../features/filter/filterSlice';
 import FilterByCategory from '../components/filterByCategory/FilterByCategory';
+import Pagination from '../components/pagination/Pagination';
 
 const Product = () => {
-
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
@@ -23,9 +23,18 @@ const Product = () => {
 	const [searchProduct, setSearchProduct] = useState('');
 	const [sort, setSort] = useState('latest');
 
+	// Pagination states
+	const [currentPage, setCurrentPage] = useState(1);
+	const [productsPerPage] = useState(9);
+	// Get Current Products
+	const indexOfLastProduct = currentPage * productsPerPage;
+	const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+	const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+	// Pagination end
+
 	useEffect(() => {
 		dispatch(productsFetch());
-		dispatch(GET_PRICE_RANGE({dataAll}));
+		dispatch(GET_PRICE_RANGE({ dataAll }));
 	}, []);
 
 	useEffect(() => {
@@ -59,7 +68,7 @@ const Product = () => {
 				<div className='container mx-auto flex px-2  md:flex-row flex-col items-center'>
 					<div className='lg:max-w-lg lg:w-64 lg:h-screen'>
 						<div className=' flex flex-col items-center justify-center '>
-							<div className="">search</div>
+							<div className=''>search</div>
 							<Search value={searchProduct} onChange={(e) => setSearchProduct(e.target.value)} />
 							<span className=' my-2'>Sort product</span>
 							<select value={sort} onChange={(e) => setSort(e.target.value)}>
@@ -79,7 +88,7 @@ const Product = () => {
 						<div className='lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center '>
 							<div className='w-auto'>
 								<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 m-12 mx-16'>
-									{filteredProducts?.map((value, i) => (
+									{currentProducts?.map((value, i) => (
 										<div className=' flex flex-col' key={i}>
 											<div className='relative overflow-hidden bg-no-repeat bg-cover max-w-xs rounded-sm'>
 												<img src={value?.image.url} width={300} className='hover:scale-110 transition duration-300 ease-in-out' alt='noImg' />
@@ -108,6 +117,7 @@ const Product = () => {
 						</div>
 					)}
 				</div>
+				<Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} productsPerPage={productsPerPage} totalProducts={filteredProducts.length} />;
 			</section>
 			;<div className='flex items-center content-center'></div>
 		</div>
