@@ -91,7 +91,7 @@ const Product = () => {
 									{currentProducts?.map((value, i) => (
 										<div className=' flex flex-col' key={i}>
 											<div className='relative overflow-hidden bg-no-repeat bg-cover max-w-xs rounded-sm'>
-												<img src={value?.image.url} width={300} className='hover:scale-110 transition duration-300 ease-in-out' alt='noImg' />
+												{value?.image && <img src={value.image.url} width={300} className='hover:scale-110 transition duration-300 ease-in-out' alt='noImg' />}
 											</div>
 											<div className=' flex items-center justify-between mt-4 bg-[#646464] text-white p-2'>
 												<button onClick={() => navigate(`/productDetail/${value?._id}`)} className=' underline'>

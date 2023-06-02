@@ -99,8 +99,8 @@ const UpcomingProduct = () => {
 				</div>
 
 				<Slider {...settings_3}>
-					{sliderItems.map((item) => (
-						<div className='cardMeHere'>
+					{sliderItems.map((item, index) => (
+						<div key={index} className='cardMeHere'>
 							<div className='iteamsHere text-start'>
 								<img className=' rounded-xl hover:scale-100 transition duration-300 ease-in-out' src={item.img} alt='no img found' width='300' />
 								<h5 className=' my-4 mt-6'>Price : {`${item.price}`} </h5>
