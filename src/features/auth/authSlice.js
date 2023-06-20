@@ -29,7 +29,7 @@ export const registerApi = createAsyncThunk('auth/registerApi', async (user, thu
 export const loginApi = createAsyncThunk('auth/loginApi', async (user, thunkAPI) => {
 	try {
 		// const response = await axios.post(BASE_URI + '/auth/signin', user);
-		const response = await axios.post(BASE_URI + '/auth/signin', user);
+		const response = await axios.post(`${BASE_URI}/auth/signin`, user);
 		return response.data;
 	} catch (error) {
 		const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
@@ -40,7 +40,7 @@ export const loginApi = createAsyncThunk('auth/loginApi', async (user, thunkAPI)
 export const logoutApi = createAsyncThunk('auth/logoutApi', async (thunkAPI) => {
 	try {
 		// const response = await axios.post(BASE_URI + '/auth/logout');
-		const response = await axios.post(BASE_URI + '/auth/logout');
+		const response = await axios.post(`${BASE_URI}/auth/logout`);
 		return response.data;
 	} catch (error) {
 		const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
@@ -53,7 +53,7 @@ export const logoutApi = createAsyncThunk('auth/logoutApi', async (thunkAPI) => 
 export const forgetPasswordApi = createAsyncThunk('auth/forgetPasswordApi', async (userEmail, thunkAPI) => {
 	try {
 		// const response = await axios.post(BASE_URI + '/auth/signup', user);
-		const response = await axios.post(BASE_URI + '/auth/forgotPassword', userEmail);
+		const response = await axios.post(`${BASE_URI}/auth/forgotPassword`, userEmail);
 		return response.data;
 	} catch (error) {
 		const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();

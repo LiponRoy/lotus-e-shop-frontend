@@ -59,19 +59,15 @@ export const productSlice = createSlice({
 			const { dataAll } = action.payload;
 			const array = [];
 			dataAll.map((product) => {
-			  const price = product.price;
-			  return array.push(price);
+				const price = product.price;
+				return array.push(price);
 			});
 			const max = Math.max(...array);
 			const min = Math.min(...array);
-	  
+
 			state.minPrice = min;
 			state.maxPrice = max;
-		  },
-
-
-
-
+		},
 	},
 	extraReducers: (builder) => {
 		builder
