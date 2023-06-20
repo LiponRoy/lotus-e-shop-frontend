@@ -9,7 +9,7 @@ const FilterByCategory = () => {
 	const dispatch = useDispatch();
 	const { dataAll, minPrice, maxPrice } = useSelector((state) => state.productRedux);
 
-	const allCategory = ['All', ...new Set(dataAll.map((prod) => prod.brand))];
+	const allCategory = [ ...new Set(dataAll.map((prod) => prod.brand)),'All'];
 
 	const [category, setCategory] = useState('All');
 	const [price, setPrice] = useState(maxPrice);
@@ -32,25 +32,25 @@ const FilterByCategory = () => {
 	return (
 		<div>
 			{
-				<div className=' flex flex-col justify-center items-center '>
+				<div className=' flex flex-col justify-center items-center mb-8'>
 					<div className='flex md:flex-col justify-center items-start mx-2'>
 						{allCategory.map((cat, index) => (
 							// <button className=' bg-green-400 p-2'>{cat}</button>
-							<Button onClick={() => filterProduct(cat)} key={index} className={`${category === cat ? 'bg-teal-500 text-white my-2 text-center px-2 my-2 w-20' : 'my-2 text-center px-2 w-20'} `}>
+							<Button onClick={() => filterProduct(cat)} key={index} className={`${category === cat ? 'bg-[#FF9F43] text-white my-2 text-center px-2 my-2 w-28 h-11 ' : 'my-2 text-center px-2 w-28 h-11 '} `}>
 								{cat}
 							</Button>
 						))}
 					</div>
-					<div className='my-4 flex flex-col justify-center items-center'>
+					{/* <div className='my-4 flex flex-col justify-center items-center'>
 						<h4>Price</h4>
 						<p>{`$${price}`}</p>
 						<div className='text-blue-700'>
 							<input type='range' value={price} onChange={(e) => setPrice(e.target.value)} min={minPrice} max={maxPrice} />
 						</div>
-					</div>
-					<Button className=' mt-6' onClick={clearFilters}>
+					</div> */}
+					{/* <Button className=' mt-6' onClick={clearFilters}>
 						Clear Filter
-					</Button>
+					</Button> */}
 				</div>
 			}
 		</div>

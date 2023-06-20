@@ -43,7 +43,7 @@ const UpcomingProduct = () => {
 		autoplaySpeed: 2000,
 		dots: true,
 		//koyta kore show korbe
-		slidesToShow: 4,
+		slidesToShow:5,
 		//arrow press korle koyta kore asbe
 		slidesToScroll: 2,
 		// vertical:true,
@@ -55,7 +55,7 @@ const UpcomingProduct = () => {
 		initialSlide: 0,
 		infinite: true,
 		// centerPadding: '170px',
-		centerMode: true,
+		centerMode: false,
 
 		responsive: [
 			{
@@ -93,7 +93,7 @@ const UpcomingProduct = () => {
 
 	return (
 		<>
-			<div className='multiSliderHere my-10 hidden md:block'>
+			<div className='multiSliderHere my-10 hidden md:block mx-52 mr-12'>
 				<div className=' flex items-center justify-center pb-8'>
 					<span className=' text-2xl font-bold'>UPCOMING PRODUCT'S</span>
 				</div>
@@ -102,7 +102,7 @@ const UpcomingProduct = () => {
 					{sliderItems.map((item, index) => (
 						<div key={index} className='cardMeHere'>
 							<div className='iteamsHere text-start'>
-								<img className=' rounded-xl hover:scale-100 transition duration-300 ease-in-out' src={item.img} alt='no img found' width='300' />
+								<img className=' hover:scale-100 transition duration-300 ease-in-out' src={item.img} alt='no img found' width='300' />
 								<h5 className=' my-4 mt-6'>Price : {`${item.price}`} </h5>
 								{/* <h6>{daa.desc}</h6> */}
 							</div>
