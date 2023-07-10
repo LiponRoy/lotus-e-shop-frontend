@@ -45,7 +45,7 @@ const NavbarTwo = () => {
 			<div className='container-fluid'>
 				<div className='liponNav'>
 					<div className='leftSide '>
-						<NavLink className=' text-xl md:text-2xl text-white font-bold' to='/'>
+						<NavLink className=' text-[1rem] md:text-[1.2rem]  xl:text-[1.5rem] text-white font-bold' to='/'>
 							Lotus <span className=' bg-[#FF9F43] p-1 md:px-4 rounded-md'>E Shop</span>
 						</NavLink>
 					</div>

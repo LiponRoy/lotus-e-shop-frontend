@@ -33,10 +33,10 @@ const FilterByCategory = () => {
 		<div>
 			{
 				<div className=' flex flex-col justify-center items-center mb-8'>
-					<div className='flex md:flex-col justify-center items-start mx-2'>
+					<div className='flex md:flex-col justify-center items-start mx-2 p-4'>
 						{allCategory.map((cat, index) => (
 							// <button className=' bg-green-400 p-2'>{cat}</button>
-							<Button onClick={() => filterProduct(cat)} key={index} className={`${category === cat ? 'bg-[#FF9F43] text-white my-2 text-center px-2 my-2 w-28 h-11 ' : 'my-2 text-center px-2 w-28 h-11 '} `}>
+							<Button onClick={() => filterProduct(cat)} key={index} className={`${category === cat ? 'bg-[#FF9F43] text-white m-1 text-center px-2 w-20 h-11 ' : 'm-1 text-center px-1  w-20 h-11 '} `}>
 								{cat}
 							</Button>
 						))}
