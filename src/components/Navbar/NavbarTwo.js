@@ -32,10 +32,10 @@ const NavbarTwo = () => {
 
 	const activeLink = ({ isActive }) => (isActive ? ' active-myLink' : ' myLink');
 	const cartAdding = (
-		<div className=' text-white mr-8 p-[4px] px-[8px] text-xl border-2 border-gray-400'>
+		<div className=' text-white mr-8 p-[4px] px-[8px] text-lg border-2 border-gray-400'>
 			<NavLink className='flex gap-x-1' to='/cartDetaials '>
 				<BsBasket3Fill></BsBasket3Fill>
-				-Cart : <span className='text-red-200 font-bold'>{cartProducts.length}</span>
+				 Cart Detail : <span className='text-red-200 font-bold'>{cartProducts.length}</span>
 			</NavLink>
 		</div>
 	);
@@ -54,20 +54,21 @@ const NavbarTwo = () => {
 							<div className='md:hidden'>
 								{user ? (
 									<div className=' flex flex-col items-center justify-center gap-y-4  text-2xl'>
-										<div className=' gap-y-2'>
+										<div className=' gap-y-4'>
 											<NavLink className='flex gap-x-1' to='/cartDetaials '>
-												Cart : <span className='text-red-200 font-bold'>{cartProducts.length}</span>
+											Cart Detail : <span className='text-red-200 font-bold'>{cartProducts.length}</span>
 											</NavLink>
 										</div>
-										<button className='text-white border-2 border-gray-300 p-2' onClick={onLogout}>
+										
+										<button className='text-white  p-2' onClick={onLogout}>
 											Logout
 										</button>
 									</div>
 								) : (
-									<div className=' flex flex-col '>
-										<span className='m-4 border-2 p-2'>
-											<NavLink onClick={closeFunc} className='' to='/cartDetaials '>
-												Cart : <span className='text-red-200 font-bold'>{cartProducts.length}</span>
+									<div className=' flex flex-col justify-center items-center '>
+										<span className='m-4'>
+											<NavLink onClick={closeFunc} className={activeLink} to='/cartDetaials '>
+												Cart Detail : <span className='text-red-200 font-bold'>{cartProducts.length}</span>
 											</NavLink>
 										</span>
 										<span className='m-4'>
@@ -95,6 +96,9 @@ const NavbarTwo = () => {
 							<div className=' flex items-center gap-4'>
 								{cartAdding}
 								<span className=' font-bold text-white'>Hi,{user.name}</span>
+								<span className='m-4'>
+											
+										</span>
 								<button className=' text-white border-2 p-2 border-gray-300' onClick={onLogout}>
 									Signout
 								</button>

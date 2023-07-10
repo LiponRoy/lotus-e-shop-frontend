@@ -73,7 +73,7 @@ const Product = () => {
       <div className="w-full text-center text-2xl md:text-2xl font-bold">
         {/* <div className='text-md'>Total Item : {data.length}</div> */}
         <div className="text-md">
-          {dataAll.length === 0 && <span>No Data Found</span>}
+          {dataAll.length === 0 && <span>Loading Data...</span>}
         </div>
       </div>
       <section className="text-gray-600 body-font">
