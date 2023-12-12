@@ -32,26 +32,14 @@ const FilterByCategory = () => {
 	return (
 		<div>
 			{
-				<div className=' flex flex-col justify-center items-center mb-8'>
-					<div className='flex md:flex-col justify-center items-start mx-2 p-4'>
-						{allCategory.map((cat, index) => (
-							// <button className=' bg-green-400 p-2'>{cat}</button>
-							<Button onClick={() => filterProduct(cat)} key={index} className={`${category === cat ? 'bg-[#FF9F43] text-white m-1 text-center px-2 w-20 h-11 ' : 'm-1 text-center px-1  w-20 h-11 '} `}>
-								{cat}
-							</Button>
-						))}
-					</div>
-					{/* <div className='my-4 flex flex-col justify-center items-center'>
-						<h4>Price</h4>
-						<p>{`$${price}`}</p>
-						<div className='text-blue-700'>
-							<input type='range' value={price} onChange={(e) => setPrice(e.target.value)} min={minPrice} max={maxPrice} />
-						</div>
-					</div> */}
-					{/* <Button className=' mt-6' onClick={clearFilters}>
-						Clear Filter
-					</Button> */}
-				</div>
+				<div className='flex  justify-center items-center'>
+				{allCategory.map((cat, index) => (
+					// <button className=' bg-green-400 p-2'>{cat}</button>
+					<Button onClick={() => filterProduct(cat)} key={index} className={` mx-2 ${category === cat ? 'bg-[#FF9F43] text-white m-1 text-center px-2 w-20 h-11 ' : ' text-center px-1  w-20 h-11 '} `}>
+						{cat}
+					</Button>
+				))}
+			</div>
 			}
 		</div>
 	);

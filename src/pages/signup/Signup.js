@@ -66,8 +66,8 @@ const Signup = () => {
 
 	return (
 		<>
-			<div className='form-container bg-gradient-to-b from-[#3498DB] to-slate-100'>
-				<div className='my-signup-form bg-gradient-to-b from-[#B0D6EF] to-slate-100'>
+			<div className='form-container '>
+			<div className='my-signup-form bg-slate-200 border-2 border-slate-500 shadow-lg'>
 					<h1 className='heading_text text-center'>SIGNUP</h1>
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<label className=' font-bold'>Name</label>

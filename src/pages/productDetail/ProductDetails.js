@@ -38,8 +38,8 @@ const ProductDetails = () => {
 							<img src={singleData?.image?.url} className=' w-[300px] md:w-[500px] hover:scale-110 transition duration-300 ease-in-out' alt='noImg' />
 						</div>
 						<div className=' flex flex-col justify-center items-start mt-4 md:ml-14 my-2 md:gap-y-4'>
-							<p className='text-2xl md:text-4xl font-bold capitalize'>{singleData?.name}</p>
-							<span className='text-2xl md:text-4xl mt-2 font-semibold '>
+							<p className='text-2xl md:text-2xl font-bold capitalize'>{singleData?.name}</p>
+							<span className='text-xl md:text-xl mt-2 font-semibold '>
 								<span className=' mr-4'>TK</span>
 								{singleData?.price}
 							</span>

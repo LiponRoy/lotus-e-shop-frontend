@@ -9,7 +9,7 @@ import {
   productsFetch,
 } from "../features/products/ProductSlice";
 import { addToCart } from "../features/cart/cartSlice";
-import { BsFillBasket2Fill } from "react-icons/bs";
+import { GrCart } from "react-icons/gr";
 import Search from "../components/search/Search";
 import {
   FILTER_BY_SEARCH,
@@ -67,102 +67,74 @@ const Product = () => {
 
     // navigate('/cartDetaials');
   };
-
   return (
-    <div>
-      <div className="w-full text-center text-2xl md:text-2xl font-bold">
-        {/* <div className='text-md'>Total Item : {data.length}</div> */}
-        <div className="text-md">
-          {dataAll.length === 0 && <span>Loading Data...</span>}
-        </div>
-      </div>
-      <section className="text-gray-600 body-font">
-		
-
-        <div className="container mx-auto flex px-2  md:flex-row flex-col justify-start items-center">
-          <div className="lg:max-w-lg lg:w-64 lg:h-screen ">
-            <div className=" flex flex-col items-center justify-center mt-10">
-              <FilterByCategory />
-              {/* <span className=" my-2">Sort product</span> */}
-              <select
-                className=" border-2 mb-24"
-                value={sort}
-                onChange={(e) => setSort(e.target.value)}
-              >
-                <option value="latest">Latest</option>
-                <option value="lowest-price">Lowest-Price</option>
-                <option value="hight-price">High-Price</option>
-                <option value="a-z">A-Z</option>
-                <option value="z-a">Z-A</option>
-              </select>
-              {/* <span className=" mt-4">Filter By Category :</span> */}
-            </div>
+    <>
+      <div className=" flex flex-col justify-center items-center ">
+        <div className=" mx-80">
+        <div className=" w-full flex flex-col md:flex-row justify-between   items-center my-4">
+          <div className="basis-[50%]  flex justify-start my-4">
+          <FilterByCategory />
           </div>
-          {isLoading ? (
-            <Spinner></Spinner>
-          ) : (
-            <div className=" flex justify-center items-center ">
-              <div className="w-auto">
-                <Search
-                  value={searchProduct}
-                  onChange={(e) => setSearchProduct(e.target.value)}
-                />
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                  {currentProducts?.map((value, i) => (
-                    <div className=" flex flex-col" key={i}>
-                      <div className="relative overflow-hidden bg-no-repeat bg-cover max-w-xs rounded-sm">
-                        {value?.image && (
-                          <img
-                            src={value.image.url}
-                            width={300}
-                            className="hover:scale-110 transition duration-300 ease-in-out"
-                            alt="noImg"
-                          />
-                        )}
-                      </div>
-                      <div className=" flex items-center justify-between mt-4 bg-[#646464] text-white p-2">
-                        <button
-                          onClick={() =>
-                            navigate(`/productDetail/${value?._id}`)
-                          }
-                          className=" underline"
-                        >
-                          {/* <BsFillBasket2Fill size='24px'></BsFillBasket2Fill> */}
-                          Detail
-                        </button>
-
-                        <button
-                          onClick={() => addToCartItem(value)}
-                          className=" underline flex items-center"
-                        >
-                          {/* <BsFillBasket2Fill size='24px'></BsFillBasket2Fill> */}
-                          Add-To-Cart
-                        </button>
-                      </div>
-
-                      <span className="text-2xl mt-2 font-semibold ">
-                        {value?.price}
-                        <span className="text-xl">TK</span>
-                      </span>
-                      <p className="text-xl font-semibold">{value?.name}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
+          <div className="basis-[50%] ">
+          <Search
+            value={searchProduct}
+            onChange={(e) => setSearchProduct(e.target.value)}
+          />
+          </div>
         </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {currentProducts?.map((value, i) => (
+            <div className=" flex flex-col justify-center items-center border-2 p-2 rounded-md" key={i}>
+              <div className="relative overflow-hidden bg-no-repeat bg-cover max-w-xs rounded-sm">
+                {value?.image && (
+                  <img
+                    src={value.image.url}
+                    width={300}
+                    className="hover:scale-110 transition duration-300 ease-in-out"
+                    alt="noImg"
+                  />
+                )}
+              </div>
+              <div className="w-[80%] md:w-full flex justify-between items-center mt-4 bg-[#646464] text-white p-2">
+                <button
+                  onClick={() => navigate(`/productDetail/${value?._id}`)}
+                  className=" "
+                >
+                  {/* <BsFillBasket2Fill size='24px'></BsFillBasket2Fill> */}
+                  Detail
+                </button>
+
+                <button
+                  onClick={() => addToCartItem(value)}
+                  className="flex items-center"
+                >
+                  <div className=" flex justify-center items-center gap-x-1">
+                  <span className=" text-sm">Add-To-Cart</span>
+                  <GrCart size='22px'/>
+                  </div>
+                  
+                </button>
+              </div>
+
+              <span className="text-xl mt-2 font-semibold  ">
+                {value?.price}
+                <span className="text-xl ml-1 ">TK</span>
+              </span>
+              <p className="text-base font-medium capitalize">{value?.name}</p>
+            </div>
+          ))}
+        </div>
+        </div>
+
         <Pagination
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
           productsPerPage={productsPerPage}
           totalProducts={filteredProducts.length}
         />
-        ;
-      </section>
-      ;<div className="flex items-center content-center"></div>
-    </div>
+      </div>
+    </>
   );
 };
 

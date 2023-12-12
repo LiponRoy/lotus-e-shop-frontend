@@ -87,7 +87,7 @@ const NavbarTwo = () => {
 						</div>
 					</div>
 					<div className='rightSide'>
-						<div className='toggleBut' onClick={() => setShowLink(!showLinks)}>
+						<div className='toggleBut cursor-pointer' onClick={() => setShowLink(!showLinks)}>
 							{showLinks ? <FaRegWindowClose></FaRegWindowClose> : <FaBars></FaBars>}
 						</div>
 					</div>
